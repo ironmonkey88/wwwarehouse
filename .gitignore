@@ -1,0 +1,20 @@
+# Environment
+.venv/
+__pycache__/
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Secrets
+.env
+secret/
+
+# WWWarehouse local storage
+*.duckdb
+*.db
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+.beads-credential-key

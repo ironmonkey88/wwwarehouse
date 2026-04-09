@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "WWWarehouse",
+  "project_id": "3df2e315-7dd9-4dc1-8b75-82be1c4a4c22"
+}
