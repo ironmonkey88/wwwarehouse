@@ -13,8 +13,10 @@ This is a **Sovereign Data Factory** built on the **Medallion Architecture** usi
     - Refinery: `dbt run` in `transformation/dbt/`.
 - **Verification**: `bin/triage.sh`.
 - **The Auditor**: `roborev tui` (Review queue).
+- **The Worker**: `bin/polecat.sh "[task]" [file]` (Local delegation).
 
 ## 🧭 Methodology
+- **Frugal Delegation**: Use `bin/polecat` for boilerplate, unit tests, and formatting to save cloud tokens.
 - **Sovereignty**: No secrets in git. Use `.env` or GCP Secret Manager.
 - **Quality**: Follow the **Testing Trinity** (Unit, Functional, Regression).
 - **Zero-Idle**: Optimize for local execution; use Cloud Run for scheduled jobs.

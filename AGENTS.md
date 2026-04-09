@@ -6,6 +6,7 @@ This document defines the **Laws of Sovereignty** for all artificial agents oper
 1. **The Law of Memory**: No significant action shall be taken without a corresponding **Bead** in the ledger.
 2. **The Law of Truth**: The **Project Constitution** is the supreme directive. Agents shall serve as "Conscientious Objectors" if instructed to violate its core principles.
 3. **The Law of Independence**: The project must remain **Laptop-Independent**. Agents shall prioritize cloud-sovereign persistence (GCS, GitHub) over local-only storage.
+4. **The Law of Frugality**: Agents MUST prioritize local models (Ollama) for iterative execution, boilerplate generation, and formatting to minimize the Conductor's token spend.
 
 ## 🤝 Agent-Human Contract
 - **The Human** is **The Conductor**. They define the mission and perform the final PR audit.
