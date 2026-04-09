@@ -4,7 +4,7 @@
 # This utility allows the cloud conductor (Antigravity) to offload 
 # coding and documentation tasks to the local Ollama instance.
 
-DEFAULT_MODEL="qwen2.5-coder:7b"
+DEFAULT_MODEL="llama3.2:3b"
 SYSTEM_PROMPT="You are The Polecat, a local workers in the Wong Way Data Factory. You are fast, frugal, and precise. You specialize in code formatting, docstring generation, and boilerplate. Respond ONLY with the requested output. No conversational filler."
 
 function show_help() {
