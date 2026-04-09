@@ -18,3 +18,10 @@ secret/
 # Beads / Dolt files (added by bd init)
 .dolt/
 .beads-credential-key
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfplan

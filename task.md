@@ -8,7 +8,7 @@ This document provides the high-level status of the **Wong Way Data Factory** co
 
 | ID | Priority | Task Description | Status |
 | :--- | :--- | :--- | :--- |
-| `WWWarehouse-pgj` | **P2** | **GCS Warehouse Setup** | ○ open |
+| `WWWarehouse-pgj` | **P2** | **GCS Warehouse Setup** | ◐ in_progress |
 | `WWWarehouse-9pb` | **P2** | **Slack Monitoring Station** | ○ open |
 | `WWWarehouse-w5o` | **P2** | **The Odometer Registry (Telemetry)** | ○ open |
 | `WWWarehouse-7s6` | **P2** | **Rat Complaint Ingestion (dlt)** | ○ open |
