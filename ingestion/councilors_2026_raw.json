@@ -1,0 +1,13 @@
+[
+  {"name": "Lance L. Davis", "ward": "Ward 6", "role": "President"},
+  {"name": "Wilfred N. Mbah", "ward": "At-Large", "role": "Vice President"},
+  {"name": "Jon Link", "ward": "At-Large", "role": "Councilor"},
+  {"name": "Kristen Strezo", "ward": "At-Large", "role": "Councilor"},
+  {"name": "Ben Wheeler", "ward": "At-Large", "role": "Councilor"},
+  {"name": "Matthew McLaughlin", "ward": "Ward 1", "role": "Councilor"},
+  {"name": "Jefferson Thomas (J.T.) Scott", "ward": "Ward 2", "role": "Councilor"},
+  {"name": "Ben Ewen-Campen", "ward": "Ward 3", "role": "Councilor"},
+  {"name": "Jesse Clingan", "ward": "Ward 4", "role": "Councilor"},
+  {"name": "Naima Sait", "ward": "Ward 5", "role": "Councilor"},
+  {"name": "Emily Hardt", "ward": "Ward 7", "role": "Councilor"}
+]
