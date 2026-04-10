@@ -11,6 +11,12 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+vars:
+  warehouse_path: "gs://warehouse-011793-factory"
+
+on-run-start:
+  - "{{ setup_gcs() }}"
+
 models:
   refinery:
     staging:

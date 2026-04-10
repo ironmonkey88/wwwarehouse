@@ -18,6 +18,8 @@ This is the **Supreme Directive** for all agentic workforce (Cloud & Local) at t
 *   **Storage First**: GCS is the primary source of truth. Use DuckDB as the compute engine and MotherDuck only for dashboard persistence.
 *   **Module Boundaries**: Logic lives in `ingestion/` (Python) and `transformation/dbt/` (SQL). UI logic is barred from data models.
 *   **Technology Lock**: Python 3.11, dbt-core 1.8.0, DuckDB v1.5.1.
+*   **Rule 2.4: Structural Isolation (The Wall)**: The `docs/publishing_docs/` folder is a **Read-Only Showroom**. Agents are strictly barred from reading its contents during development or refinery tasks to prevent context pollution. It exists only for the `bin/publish_docs.sh` script to write to.
+*   **Rule 2.5: Context Hygiene**: Large artifacts (>1MB) produced during execution must be moved to an ignored directory (`target/`, `.venv/`) immediately and never committed to `docs/`.
 
 ## Pillar 3: Operational Workflow
 *   **One Bead, One Branch**: Every task ID (`WWWarehouse-xxxx`) requires a dedicated `feat/` branch.
@@ -25,6 +27,7 @@ This is the **Supreme Directive** for all agentic workforce (Cloud & Local) at t
 *   **No-YOLO Policy**: Agents never push directly to `master`. All work is presented as a Pull Request Summary for human audit.
 *   **Sovereignty**: All documentation, tasks, and history live in the repo (Laptop-Independent).
 *   **Spec-First**: Consult `.kilo/` before generating code.
+*   **Rule 3.3.1: Sentinel Audit**: Before any Bead is closed, the developer must run **`bin/focus_sentinel.py`**. No work is "Done" if the Sentinel detects Critical Pollution or Architecture Creep.
 *   **Triage Proxy**: Always run `bin/triage.sh` before heavy executions to ensure environment health.
 *   **Secret Management**: Use the local [**`.env`**](file:///Users/gordonwong/WWWarehouse/.env) for development keys (ignored by git) and **GCP Secret Manager** for all production credentials.
 *   **Model Routing Strategy**:

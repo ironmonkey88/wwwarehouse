@@ -2,7 +2,7 @@ refinery:
   outputs:
     dev:
       type: duckdb
-      path: '../../warehouse_local.duckdb'
+      path: '/Users/gordonwong/WWWarehouse/.ignored/warehouse_local.duckdb'
       schema: silver
       threads: 1
   target: dev

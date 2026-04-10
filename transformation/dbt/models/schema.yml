@@ -9,6 +9,10 @@ sources:
 models:
   - name: stg_councilors
     description: "Staged Somerville Councilor data"
+    meta:
+      lightdash:
+        show_as_table: true
+    tags: ["lightdash"]
     columns:
       - name: councilor_id
         tests:

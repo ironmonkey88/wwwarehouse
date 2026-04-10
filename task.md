@@ -1,42 +1,25 @@
-# WWWarehouse: Project Roadmap (Beads Mirror) 🧭
+# Task: ERD Sovereignty & DoD Hardening 🛡️
 
-This document provides the high-level status of the **Wong Way Data Factory** construction. The canonical source of truth for these tasks is the official **Beads Ledger** (`.beads/`).
+Implementing the "Topology Seal" to ensure all data models are mapped in the project ERD.
 
----
+## High-Level Tasks
+- [x] **CP-G01: Update DoD** ([definition_of_done.md](file:///Users/gordonwong/WWWarehouse/docs/definition_of_done.md))
+- [x] **CP-G02: Initialize Project ERD** ([docs/ERD.md](file:///Users/gordonwong/WWWarehouse/docs/ERD.md))
+- [/] **CP-G03: Link ERD to Master Plan** ([docs/master_plan.md](file:///Users/gordonwong/WWWarehouse/docs/master_plan.md))
+- [x] **CP-G04: Update DoD for Accessibility** ([docs/definition_of_done.md](file:///Users/gordonwong/WWWarehouse/docs/definition_of_done.md))
+- [/] **CP-G05: Enhance Documentation Hub** ([bin/publish_docs.sh](file:///Users/gordonwong/WWWarehouse/bin/publish_docs.sh))
+- [ ] **CP-G06: Lightdash Discovery Tags** ([transformation/dbt/models/schema.yml](file:///Users/gordonwong/WWWarehouse/transformation/dbt/models/schema.yml))
 
-## 📈 Status Dashboard (Official `bd list`)
+## Sub-Tasks
+### 🏛 1. Governance Update
+- [x] Add Section 5 (Topology Seal) to DoD.
+- [x] Add Section 6 (Lightdash Discovery) and Section 7 (Public Portal) to DoD.
 
-| ID | Priority | Task Description | Status |
-| :--- | :--- | :--- | :--- |
-| `WWWarehouse-pgj` | **P2** | **GCS Warehouse Setup** | ◐ in_progress |
-| `WWWarehouse-9pb` | **P2** | **Slack Monitoring Station** | ○ open |
-| `WWWarehouse-w5o` | **P2** | **The Odometer Registry (Telemetry)** | ○ open |
-| `WWWarehouse-7s6` | **P2** | **Rat Complaint Ingestion (dlt)** | ○ open |
-| `WWWarehouse-76o` | **P2** | **The Refinery (dbt)** | ○ open |
-| `WWWarehouse-79q` | **P2** | **The Knowledge Product (Evidence)** | ○ open |
-| `WWWarehouse-f8w` | **P2** | **The Self-Healing Scraper** | ○ open |
-| `WWWarehouse-vn5` | **P2** | **Odometer Alerting** | ○ open |
-| `WWWarehouse-a5t` | **P2** | **Cube Universal Gateway** | ○ open |
-| `WWWarehouse-nig` | **P2** | **MotherDuck Persistence** | ○ open |
-| `WWWarehouse-ag1` | **P2** | **Pipeline Instrumentation** | ○ open |
-| `WWWarehouse-huq` | **P2** | **Automated Data Profiling** | ○ open |
+### 🧭 2. Documentation Setup
+- [x] Create `docs/ERD.md`.
+- [x] Document `stg_councilors` entity.
+- [/] Update `bin/publish_docs.sh` to include ERD.md.
 
----
-
-## ✓ Sealed Beads (Phase 0 Archive)
-| ID | Task Title | Status |
-| :--- | :--- | :--- |
-| `WWWarehouse-qe6` | Install Beads (bd) | ✓ closed |
-| `WWWarehouse-z4c` | Initialize Python .venv | ✓ closed |
-| `WWWarehouse-sz0` | Install dlt & dbt Stack | ✓ closed |
-| `WWWarehouse-lgg` | Local Model Audit | ✓ closed |
-| `WWWarehouse-mld` | Factory Access Audit | ✓ closed |
-
----
-## 🛠 Operational Commands
-*   `bd list`: Show the active board.
-*   `bd show <id>`: Show detailed methodologies and methodology.
-*   `bd claim <id>`: Start working on a task.
-*   `bd close <id>`: Finalize and verify a task.
-
-*Last Synchronized: 2026-04-09*
+### 🤖 3. Automation & Verification
+- [ ] Tag `stg_councilors` for Lightdash in `schema.yml`.
+- [ ] Run `focus_sentinel.py` to verify documentation integrity.

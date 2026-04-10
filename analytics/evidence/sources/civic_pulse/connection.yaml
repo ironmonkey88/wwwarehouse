@@ -1,0 +1,6 @@
+# Connection to the Sovereign Data Factory vault
+# (warehouse.duckdb is a symlink to .ignored/warehouse_local.duckdb)
+name: civic_pulse
+type: duckdb
+options:
+  filename: warehouse.duckdb

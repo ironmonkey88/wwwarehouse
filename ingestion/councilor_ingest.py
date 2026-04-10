@@ -27,5 +27,6 @@ if __name__ == "__main__":
     # Configure Filesystem (GCS) Destination Credentials
     os.environ['DESTINATION__FILESYSTEM__BUCKET_URL'] = 'gs://warehouse-011793-factory'
     os.environ['DESTINATION__FILESYSTEM__CREDENTIALS__PROJECT_ID'] = 'gen-lang-client-0117935224'
+    os.environ['DESTINATION__FILESYSTEM__LOADER_FILE_FORMAT'] = 'parquet'
     
     load_councilors()

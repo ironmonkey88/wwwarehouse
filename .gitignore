@@ -20,6 +20,7 @@ secret/
 .beads-credential-key
 
 # Terraform
+.ignored/
 .terraform/
 *.tfstate
 *.tfstate.backup
