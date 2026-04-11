@@ -38,7 +38,7 @@ Every change must pass three layers of verification:
 - [ ] `git push` succeeded and remote is in sync.
 
 ## 🏛 6. Topology & Schema
-- [ ] **ERD:** Every Silver and Gold model must be represented in the [Project ERD](file:///Users/gordonwong/WWWarehouse/docs/ERD.md).
+- [ ] **ERD:** Every Silver and Gold model must be represented in the [Project ERD](docs/ERD.md).
 - [ ] **Relationship Integrity:** All foreign key relationships (joins) must be explicitly diagrammed.
 - [ ] **Semantic Discovery:** Every Gold model must be tagged with `tags: ["lightdash"]` in `schema.yml` and be joinable without SQL errors.
 

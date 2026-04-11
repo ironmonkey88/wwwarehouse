@@ -22,7 +22,7 @@ This document is the "Continuous Learning" repository for the project. It stores
 *   **Insight (Sifu Handshake)**: Every worker must be "Qualified" per ADR-005. A mode without bound skills is merely an intention. [verify_worker.py]
 *   **Insight (Git Sovereignty)**: "Stage Everything, Filter the Bloat." Precise whitelisting in agentic Git automation is brittle; whitelist the whole repo and then blacklist binaries to ensure a clean sync. 🛰️
 *   **Insight (Research Sovereignty)**: "Clone First, Browse Second." Agents are 5x more efficient at IQ harvesting when analyzing local text vs DOM-based browser sessions.
-*   **Insight (Persona Stability)**: Explicit **Role Assertion** at the start of every session is the primary defense against Agentic Drift. [SOP-000]
+*   **Insight (The Oxy Amnesia)**: 🏮 Architectural decisions made in the "Vibe Layer" (chat) without a corresponding ADR are temporary. Oxygen (oxy.tech) was "lost" because it lacked a structural anchor in the docs. **Action**: Every stack decision MUST result in a Tier-4 ADR and a Tier-3 Registry update. [ADR-006]
 
 ---
 *Maintained by The Sifu | Wong Way Data Factory*

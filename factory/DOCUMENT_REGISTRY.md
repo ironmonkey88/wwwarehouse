@@ -87,7 +87,7 @@ These documents capture institutional knowledge and prevent us from repeating mi
 | Document | Location | Purpose | Contains | Used By |
 | :--- | :--- | :--- | :--- | :--- |
 | **KNOWLEDGE.md** | `/artifacts/KNOWLEDGE.md` | Continuous Learning Log ("Deep Memory") | Dated insights, gotchas, environment discoveries | Every session start — check before researching |
-| **ADRs** | `/artifacts/adr/###_title.md` | Architecture Decision Records | Context, Decision, Rationale, Status for each major shift | When questioning "why did we choose X?" |
+| **ADRs** | `/artifacts/adr/###_title.md` | Architecture Decision Records | Context, Decision, Rationale, Status for each major shift (e.g., 006 Oxygen) | When questioning "why did we choose X?" |
 | **Retrospectives** | `/artifacts/retrospectives/RETROSPECTIVE_*.md` | Post-mortem analysis of completed phases | Root causes, friction inventory, corrective actions | After major milestones |
 
 ---

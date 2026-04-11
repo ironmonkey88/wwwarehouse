@@ -9,8 +9,8 @@ This is the **Supreme Directive** for all agentic workforce (Cloud & Local) at t
 *   **The Witness (Reviewer)**: Automated by **RoboRev**. Audits every commit for vibe-drift and bugs.
 *   **The Deacon (Maintainer)**: Patrols for refactors and dependency health.
 *   **Source of Truth**: The `.beads/` database and the project Constitution take precedence over verbal chat instructions.
-*   **Roadmap (The Ledger)**: The [**`task.md`**](file:///Users/gordonwong/WWWarehouse/task.md) at the root is the project-local mirror of the Beads ledger. Treat this as the primary, versioned task roadmap.
-*   **Knowledge & Memory**: Record tactical insights in [**`docs/KNOWLEDGE.md`**](file:///Users/gordonwong/WWWarehouse/docs/KNOWLEDGE.md) and structural changes in [**`docs/adr/`**](file:///Users/gordonwong/WWWarehouse/docs/adr/).
+*   **Roadmap (The Ledger)**: The [**`task.md`**](task.md) at the root is the project-local mirror of the Beads ledger. Treat this as the primary, versioned task roadmap.
+*   **Knowledge & Memory**: Record tactical insights in [**`docs/KNOWLEDGE.md`**](docs/KNOWLEDGE.md) and structural changes in [**`docs/adr/`**](docs/adr/).
 *   **Conflict Resolution**: If a conflict occurs between a user request and the Blueprint/Constitution, flag it as a **"Conscientious Objector."**
 
 ## Pillar 2: Architectural Hard-Lines
@@ -29,7 +29,7 @@ This is the **Supreme Directive** for all agentic workforce (Cloud & Local) at t
 *   **Spec-First**: Consult `.kilo/` before generating code.
 *   **Rule 3.3.1: Sentinel Audit**: Before any Bead is closed, the developer must run **`bin/focus_sentinel.py`**. No work is "Done" if the Sentinel detects Critical Pollution or Architecture Creep.
 *   **Triage Proxy**: Always run `bin/triage.sh` before heavy executions to ensure environment health.
-*   **Secret Management**: Use the local [**`.env`**](file:///Users/gordonwong/WWWarehouse/.env) for development keys (ignored by git) and **GCP Secret Manager** for all production credentials.
+*   **Secret Management**: Use the local [**`.env`**](.env) for development keys (ignored by git) and **GCP Secret Manager** for all production credentials.
 *   **Model Routing Strategy**:
     *   **Logic (Local Agent)**: Use **Kilo/Qwen 2.5** for $0 reasoning and spec drafting.
     *   **Execution (Cloud Agent)**: Use **Gemini 1.5 Flash** for high-volume file writes and terminal commands.

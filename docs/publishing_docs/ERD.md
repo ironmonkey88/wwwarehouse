@@ -1,5 +1,5 @@
 # ERD
 
-> **Canonical location:** [`/docs/ERD.md`](file:///Users/gordonwong/WWWarehouse/docs/ERD.md)
+> **Canonical location:** [`/docs/ERD.md`](docs/ERD.md)
 >
 > Do not edit this copy.

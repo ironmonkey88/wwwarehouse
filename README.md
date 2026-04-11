@@ -19,7 +19,7 @@ WWWarehouse is an agentic, serverless, and "Zero-Idle" **Data Factory** designed
 - `docs/`: Manifesto, philosophy, and ADRs.
 
 ## 🚀 Getting Started
-Check the [Manifesto](file:///Users/gordonwong/WWWarehouse/docs/manifesto.md) for our core principles or follow the [Assistant Role](file:///Users/gordonwong/WWWarehouse/docs/assistant_role.md) guide to understand how to collaborate with the system.
+Check the [Manifesto](docs/manifesto.md) for our core principles or follow the [Assistant Role](docs/assistant_role.md) guide to understand how to collaborate with the system.
 
 ---
 *Created by the Wong Way Assistant for Gordon Wong | April 2026*
