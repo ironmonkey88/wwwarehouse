@@ -2,24 +2,29 @@
 
 > **"Always do things the Wong Way."**
 
-WWWarehouse is an agentic, serverless, and "Zero-Idle" **Data Factory** designed for the modern data repository (MDR) era. Built by **Wong Way**, it focuses on using automated **Assembly Lines** to produce high-value **Knowledge Products**.
-
-## 🏛 The "Wong Way" Architecture
-- **Staging Hive:** Every ingestion pipeline operates in its own partition (DuckDB file on GCS) to avoid concurrency collisions.
-- **On-Demand Lakehouse:** Uses **DuckDB + GCS** for sub-second analysis with $0 base cost when idle.
-- **Serverless Compute:** Orchestrated via **Cloud Run Jobs** to scale from zero to high concurrency.
-- **Agentic ETL:** Powered by **Kilo Code** and **Gastown** for self-healing and parallel data scraping.
-
-## 📋 Logical Structure
-- `infra/`: Terraform configurations for the GCP "Zero-Idle" stack.
-- `ingestion/`: Logic for Airbyte (Structured) and Oxy.tech (Unstructured) sources.
-- `transformation/`: dbt project implementing a Medallion flow (Bronze, Silver, Gold).
-- `analysis/`: Lightdash (Self-service) and Evidence.dev (Executive Plating).
-- `agents/`: Configs for the agentic workforce.
-- `docs/`: Manifesto, philosophy, and ADRs.
-
-## 🚀 Getting Started
-Check the [Manifesto](docs/manifesto.md) for our core principles or follow the [Assistant Role](docs/assistant_role.md) guide to understand how to collaborate with the system.
+WWWarehouse is an agentic, serverless, and "Zero-Idle" **Data Factory**. It is a specialized, machine-verifiable repository where an autonomous strike team (The Swarm) produces high-value **Knowledge Products** for Gordon Wong.
 
 ---
-*Created by the Wong Way Assistant for Gordon Wong | April 2026*
+
+## 🧭 Start Here: The Sovereign Registry
+All project information, workforce identity, and operational logic is centralized in the:
+👉 **[Document Registry](factory/DOCUMENT_REGISTRY.md)** 📚
+
+---
+
+## 🏛 The Factory Architecture
+- **Worker Swarm**: 7 specialized agents (Architect, Refiner, Mayor, etc.) bound by **SOP-005**.
+- **Data Pipeline**: **dlt** (Ingestion) $\rightarrow$ **dbt** (Refinery) $\rightarrow$ **Evidence.dev** (Plating).
+- **Warehouse**: **DuckDB + GCS** (Parquet) for $0 base cost when idle.
+- **Observability**: Designed for **Oxygen (oxy.tech)** autonomous discovery.
+
+## 📁 Repository Map
+- `factory/`: The Intelligence Layer (Modes, Skills, SOPs, Templates).
+- `ingestion/`: The Assembly Line (dlt pipelines).
+- `transformation/`: The Refinery (dbt models).
+- `analytics/`: The Showroom (Evidence.dev & Cube profiles).
+- `infra/`: The Foundation (Terraform GCP).
+- `docs/`: The Blueprint (Roadmaps, DoD, Architecture).
+
+---
+*Maintained by the Wong Way Data Factory | April 2026*
