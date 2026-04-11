@@ -1,0 +1,50 @@
+# [SIMULATED] Refiner Drill: Police Privacy Audit
+# Objective: Verify that the exact address is masked in the Silver/Gold layers.
+
+unit_tests:
+  - name: test_fct_police_activity_privacy
+    model: fct_police_activity
+    description: "Ensure that 'address' is not exposed in the final product."
+    given:
+      - input: ref('stg_police_incidents')
+        rows:
+          - {incident_id: 'POL-001', address: '123 Broadway', ward: 'Ward 1'}
+    expect:
+      rows:
+        - {incident_id: 'POL-001', ward: 'Ward 1'} # Note: 'address' column should be missing or null
+EOF && \
+cat << 'EOF' > transformation/dbt/models/stg_police_incidents.sql
+-- [SIMULATED] Source mapping for Police data
+SELECT 
+    incident_id,
+    date,
+    type,
+    address,
+    ward
+FROM {{ source('bronze_police', 'incidents') }}
+EOF && \
+cat << 'EOF' > transformation/dbt/models/silver/int_police_anonymized.sql
+-- [SIMULATED] Hashing PII for Privacy (ADR-008)
+SELECT 
+    incident_id,
+    date,
+    type,
+    ward,
+    -- Hashing the address to protect specific location PII
+    md5(address) AS address_hash
+FROM {{ ref('stg_police_incidents') }}
+EOF && \
+cat << 'EOF' > transformation/dbt/models/gold/fct_police_activity.sql
+-- [SIMULATED] Public Safety Fact Table
+{{ config(
+    materialized='table',
+    tags=['oxygen:semantic']
+) }}
+
+SELECT 
+    incident_id,
+    date,
+    type,
+    ward,
+    CURRENT_TIMESTAMP() AS processed_at
+FROM {{ ref('int_police_anonymized') }}

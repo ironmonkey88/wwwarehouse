@@ -56,15 +56,13 @@ These documents define the "personhood" of agents. They are machine-readable YAM
 | :--- | :--- | :--- | :--- | :--- |
 | **Agent Registry** | `/factory/modes/README.md` | Governance standards for personas | Kilo schema definition, activation protocol | Every agent at session start |
 | **Mode Template** | `/factory/modes/template.yaml` | The blueprint for new personas | Required YAML fields, roleDefinition | The Architect (when commissioning agents) |
-| **The Architect** | `/factory/modes/architect/MODE.yaml` | High-level system & design persona | ADR rules, Laptop Independence, design groups | Cloud AI (for architecture tasks) |
-| **The Mayor** | `/factory/modes/mayor/MODE.yaml` | Context & coordination persona | task.md rules, Bead tracking, telemetry | Cloud AI (for project management) |
-| **The Assembler** | `/factory/modes/assembler/MODE.yaml` | Ingestion & Pipeline Specialist | dlt mastery, Spatial logic, Python sovereignty | Cloud AI (for extraction/ELT) |
-| **The Refiner** | `/factory/modes/refiner/MODE.yaml` | dbt & Transformation Specialist | TDD Gate, Medallion standards, Semantic Layer | Cloud AI (for refinery tasks) |
-| **The Witness** | `/factory/modes/witness/MODE.yaml` | Audit & verification persona | Triple-Seal Audit, DoD rules, audit groups | Cloud AI (for validation & releases) |
-| **The Debugger** | `/factory/modes/debugger/MODE.yaml` | Troubleshooting & healing persona | Log-parsing rules, root-cause methodology | Cloud AI (for bug fixing) |
-| **The Artisan** | `/factory/modes/artisan/MODE.yaml` | Product & Semantic Specialist | Evidence-plating, Cube logic, Visual DQ, Aesthetic Mastery | Cloud AI (for dashboarding/metrics) |
-| **The Refinery** | `/factory/modes/refinery/MODE.yaml` | Git & release hygiene persona | Checkpoint Protocol, atomic commit rules | Cloud AI (for source control sync) |
-| **The Sifu** | `/factory/modes/sifu/MODE.yaml` | Kaizen Teacher & Coaching persona | Retros, Learning Log (KNOWLEDGE.md), Upskilling | Cloud AI (for workforce growth) |
+| **The Mayor** | `/factory/modes/mayor/MODE.yaml` | Workforce Coordinator | Task routing, Bead lifecycle, context distillation | The Mayor (during handoffs) |
+| **The Witness** | `/factory/modes/witness/MODE.yaml` | Truth & Audit Defender | Triple-Seal Audit, PII scanning, Release hygiene | The Witness (during audits/releases) |
+| **The Assembler** | `/factory/modes/assembler/MODE.yaml` | Ingestion & Pipeline Specialist | dlt mastery, Spatial logic, Python sovereignty | The Assembler (for ELT/ingestion) |
+| **The Refiner** | `/factory/modes/refiner/MODE.yaml` | dbt & Transformation Specialist | TDD Gate, Medallion standards, Semantic Layer | The Refiner (for dbt/SQL) |
+| **The Artisan** | `/factory/modes/artisan/MODE.yaml` | Product & Semantic Specialist | Evidence-plating, Cube logic, Visual DQ, Aesthetic Mastery | The Artisan (for BI/Products) |
+| **The Architect** | `/factory/modes/architect/MODE.yaml` | Systems & Integrity Warden | ADR rules, Laptop Independence, design groups | The Architect (for core design) |
+| **The Sifu** | `/factory/modes/sifu/MODE.yaml` | Kaizen Teacher & Coach | Retros, Learning Log (KNOWLEDGE.md), Upskilling | Sifu (for workforce growth) |
 
 ---
 
