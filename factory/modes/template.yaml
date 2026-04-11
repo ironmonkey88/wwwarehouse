@@ -1,0 +1,31 @@
+id: mode-template-v1
+name: Persona Template
+description: >-
+  Standard template for defining Agentic Modes in the WWWarehouse.
+author: The Wong Way Architect
+tags:
+  - template
+  - governance
+content: |
+  slug: template-persona
+  name: Template Persona
+  roleDefinition: >
+    You are a specialized agent... [Define the core identity and report lines here]
+  groups:
+    - name: read
+      fileRegex:
+        - ".*"
+    - name: browser
+    - name: bash
+      commands:
+        - "bd *"
+        - "dbt *"
+  customInstructions: >
+    - Follow SOP-000 for session startup.
+    - Adhere to the Tiered Document Registry.
+    - Use "The Odometer" for token telemetry.
+metadata:
+  category: governance
+  source:
+    repo: https://github.com/ironmonkey88/wwwarehouse
+    path: factory/modes/template.yaml
