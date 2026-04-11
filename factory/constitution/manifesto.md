@@ -36,7 +36,7 @@ We do not make decisions in the dark. Every major shift is recorded for future a
 - **Beads (bd):** Every atomic task carries its rationale.
 - **Goal:** Future Gordon (or his Agents) must be able to trace exactly *why* we chose the "Wong Way" for a specific component.
 
-## 4. The Hierarchy of Needs (The Wong Foundation)
+## 5. The Hierarchy of Needs (The Wong Foundation)
 All work is categorized as either building the **Data Factory** (Infra, Tooling) or a **Knowledge Product** (Dashboards).
 
 1. **Foundation (Security):** Minimal but encrypted. IAM-based signatures.

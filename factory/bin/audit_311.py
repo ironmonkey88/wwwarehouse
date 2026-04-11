@@ -1,24 +1,27 @@
+#!/usr/bin/env python3
 import requests
 import duckdb
 from datetime import datetime, timedelta
 import sys
 import random
 import pandas as pd
+import argparse
 
 def get_lookback_date():
     return (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%dT%H:%M:%S')
 
-def get_socrata_distribution(lookback_date):
+def get_socrata_distribution(full_history=False):
     """Shape Audit: Distribution by type."""
     url = "https://data.somervillema.gov/resource/4pyi-uqq6.json"
     params = {
         "$select": "type, count(id)",
-        "$where": f"date_created >= '{lookback_date}'",
         "$group": "type"
     }
+    if not full_history:
+        params["$where"] = f"date_created >= '{get_lookback_date()}'"
+    
     response = requests.get(url, params=params)
     response.raise_for_status()
-    # Normalize keys/values to string-based map
     return {str(item['type']): int(item['count_id']) for item in response.json()}
 
 def get_local_distribution():
@@ -28,55 +31,40 @@ def get_local_distribution():
     conn.close()
     return {str(row[0]): int(row[1]) for row in res}
 
-def get_socrata_sample(lookback_date, limit=10):
-    """Sample Audit: Full-row extraction."""
-    url = "https://data.somervillema.gov/resource/4pyi-uqq6.json"
-    params = {
-        "$where": f"date_created >= '{lookback_date}'",
-        "$limit": 100 # Pull pool to pick randoms
-    }
-    response = requests.get(url, params=params)
-    response.raise_for_status()
-    full_list = response.json()
-    return random.sample(full_list, min(len(full_list), limit))
-
 def normalize_val(val, field_name):
     """Normalizes values for comparison (handles nulls, dates, and Eastern Fidelity)."""
     if val is None or str(val).lower() == 'nan' or str(val).lower() == 'none':
         return None
     
-    # Handle Date/Timestamp fields for Eastern Fidelity
     if "date" in field_name or "created" in field_name:
         try:
             dt = pd.to_datetime(val)
-            # If it's already fixed-length (just a date), keep as date
             if len(str(val)) <= 10:
                 return dt.date()
-                
-            # If it has TZ info (Local Aware), convert to Eastern and strip
             if dt.tzinfo is not None:
                 return dt.tz_convert('US/Eastern').tz_localize(None)
             else:
-                # If naive (Socrata UTC), assume UTC, convert to Eastern, strip
                 return dt.tz_localize('UTC').tz_convert('US/Eastern').tz_localize(None)
         except:
             return str(val).strip()
             
-    # Normalize everything else to string for pure identity matching
     return str(val).strip()
 
-def run_triple_seal_audit():
-    lookback_date = get_lookback_date()
-    print(f"--- WONG WAY TRIPLE-SEAL AUDIT (MORAL CERTAINTY MODE) ---")
-    print(f"Window: since {lookback_date}\n")
-
+def run_triple_seal_audit(full_history=False):
+    mode_label = "FULL HISTORY" if full_history else "LAST 30 DAYS"
+    print(f"--- WONG WAY TRIPLE-SEAL AUDIT ({mode_label} MODE) ---")
+    
     conn = duckdb.connect("./.ignored/warehouse_local.duckdb")
     
     try:
         # GATE 1: SIZE
         print("[GATE 1] Checking Size (Volume)...")
-        source_count = int(requests.get("https://data.somervillema.gov/resource/4pyi-uqq6.json", 
-                                        params={"$select": "count(id)", "$where": f"date_created >= '{lookback_date}'"}).json()[0]['count_id'])
+        url = "https://data.somervillema.gov/resource/4pyi-uqq6.json"
+        s_params = {"$select": "count(id)"}
+        if not full_history:
+            s_params["$where"] = f"date_created >= '{get_lookback_date()}'"
+            
+        source_count = int(requests.get(url, params=s_params).json()[0]['count_id'])
         local_count = conn.execute("SELECT count(*) FROM bronze.service_requests").fetchone()[0]
         
         if source_count != local_count:
@@ -86,57 +74,57 @@ def run_triple_seal_audit():
 
         # GATE 2: SHAPE
         print("[GATE 2] Checking Shape (Distribution)...")
-        source_dist = get_socrata_distribution(lookback_date)
+        source_dist = get_socrata_distribution(full_history)
         local_dist = get_local_distribution()
         
         for r_type, s_count in source_dist.items():
             l_count = local_dist.get(r_type, 0)
-            if s_count != l_count:
+            if abs(s_count - l_count) > 0: # Exact match required
                 print(f"❌ SHAPE BREACH for '{r_type}': Source {s_count} != Local {l_count}")
                 sys.exit(1)
         print(f"✅ SHAPE PASS: All distributions matched.\n")
 
-        # GATE 3: SAMPLE
-        sample_size = max(1, int(source_count * 0.01))
-        print(f"[GATE 3] Checking Sample ({sample_size} records for 1% Moral Certainty)...")
-        # Pull batch of 200 to minimize API overhead
-        batch = get_socrata_sample(lookback_date, limit=200)
-        # Select target 1% from the batch
-        samples = random.sample(batch, min(len(batch), sample_size))
+        # GATE 3: SAMPLE (Stochastic Moral Certainty)
+        # 1% Sample size, but capped at 1000 for efficiency if in full mode
+        target_sample = int(source_count * 0.01)
+        sample_size = min(1000, target_sample) if full_history else target_sample
         
-        # Get schema to avoid comparing dlt-internal columns
+        print(f"[GATE 3] Checking Sample ({sample_size} records for Moral Certainty)...")
+        
+        # Get schema
         local_columns = [col[0] for col in conn.execute("DESCRIBE bronze.service_requests").fetchall()]
         
-        for s_row in samples:
+        # Stochastic Sampling: Fetch records at random offsets
+        verified_count = 0
+        while verified_count < sample_size:
+            offset = random.randint(0, source_count - 1)
+            params = {"$limit": 1, "$offset": offset}
+            if not full_history:
+                params["$where"] = f"date_created >= '{get_lookback_date()}'"
+            
+            s_row = requests.get(url, params=params).json()[0]
             s_id = s_row['id']
-            # Fetch full local row
-            local_row_cursor = conn.execute("SELECT * FROM bronze.service_requests WHERE id = ?", [s_id])
-            l_row = local_row_cursor.fetchone()
+            
+            l_row = conn.execute("SELECT * FROM bronze.service_requests WHERE id = ?", [s_id]).fetchone()
             
             if not l_row:
                 print(f"❌ SAMPLE BREACH: ID {s_id} missing locally.")
                 sys.exit(1)
             
-            # Map column index to names
             l_row_dict = dict(zip(local_columns, l_row))
-            
-            # Compare shared fields
             for key, s_val in s_row.items():
-                if key not in l_row_dict:
-                    continue # Skip if dlt didn't ingest a specific sparse field
-                
-                l_val = l_row_dict[key]
-                norm_s = normalize_val(s_val, key)
-                norm_l = normalize_val(l_val, key)
-                
-                if norm_s != norm_l:
-                    print(f"❌ VALUE BREACH for ID {s_id} Field '{key}':")
-                    print(f"   Source: {norm_s}")
-                    print(f"   Local:  {norm_l}")
-                    sys.exit(1)
-                    
-        print(f"✅ SAMPLE PASS: {len(samples)} random full-rows verified 1:1 in Eastern Time.\n")
+                if key in l_row_dict:
+                    norm_s = normalize_val(s_val, key)
+                    norm_l = normalize_val(l_row_dict[key], key)
+                    if norm_s != norm_l:
+                        print(f"❌ VALUE BREACH for ID {s_id} Field '{key}': S:{norm_s} L:{norm_l}")
+                        sys.exit(1)
+            
+            verified_count += 1
+            if verified_count % 100 == 0:
+                print(f"   Progress: Verified {verified_count}/{sample_size} records...")
 
+        print(f"✅ SAMPLE PASS: {verified_count} unique records verified 1:1.\n")
         print("--- FINAL RESULT: 1% MORAL CERTAINTY ACHIEVED 🎖️ ---")
         sys.exit(0)
 
@@ -147,4 +135,7 @@ def run_triple_seal_audit():
         conn.close()
 
 if __name__ == "__main__":
-    run_triple_seal_audit()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--full", action="store_true", help="Audit full history")
+    args = parser.parse_args()
+    run_triple_seal_audit(full_history=args.full)

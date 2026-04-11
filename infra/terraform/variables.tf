@@ -15,3 +15,21 @@ variable "bucket_name" {
   type        = string
   default     = "warehouse-011793-factory"
 }
+
+variable "gcs_access_key_id" {
+  description = "GCS Interoperability Access Key ID"
+  type        = string
+  sensitive   = true
+}
+
+variable "gcs_secret_access_key" {
+  description = "GCS Interoperability Secret Access Key"
+  type        = string
+  sensitive   = true
+}
+
+variable "firebase_token" {
+  description = "Firebase CI token for automated deployment"
+  type        = string
+  sensitive   = true
+}

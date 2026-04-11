@@ -1,1 +1,0 @@
-/Users/gordonwong/WWWarehouse/tests/quality_gates/evidence/verify_evidence.sh

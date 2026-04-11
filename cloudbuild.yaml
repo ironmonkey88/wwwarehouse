@@ -26,7 +26,7 @@ steps:
         export DBT_LOG_FORMAT=text
         export DBT_USE_COLORS=false
         dbt deps
-        dbt run --profiles-dir . --select +profiling --debug
+        dbt run --profiles-dir . --select +profiling
 
   # 4. dbt Documentation Generation
   - name: 'gcr.io/$PROJECT_ID/sovereign-refinery:latest'

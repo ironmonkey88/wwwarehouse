@@ -1,48 +1,46 @@
 # WWWarehouse: Definition of Done (DoD) 📜
 
-No task or pipeline is considered "Done" until the following criteria are met and verified by the **Wong Way Assistant (Kilo)**.
+No task or pipeline is considered "Done" until the following criteria are met and verified.
 
-## 🏛 1. The Lineage Mandate
+---
+
+## 🧪 1. Testing (The Testing Trinity)
+Every change must pass three layers of verification:
+
+1.  **Unit Tests**: Verify isolated logic components (dbt macros, Python functions).
+2.  **Functional Tests**: Verify the specific "solve" for the current task. Must use mock data for laptop-independent verification. Run via `pytest tests/functional/` — 100% pass required.
+3.  **Regression Tests**: Verify that the global system state (architecture, setup, historical logic) remains intact.
+
+## 🏛 2. The Lineage Mandate
 - [ ] Every model must trace back to an **Explicit Source** in `sources.yml`.
 - [ ] The `dbt docs` lineage graph must show a complete, unbroken chain from Source -> Bronze -> Silver -> Gold.
 - [ ] **No Shadow Data:** Any model not connected to a final **Knowledge Product** in the lineage graph is a violation.
 
-## 🧭 2. The SLA (Service Level Agreement)
+## 🧭 3. Service Level Agreement (SLA) & Triple-Seal Audit
 - [ ] **Freshness:** Data update timestamp is < **24 hours** from the source (unless no new data is available).
-- [ ] **Accuracy:** Bronze record count matches the SODA/Oxy metadata (+/- 0.01%).
-- [ ] **Integrity:** `unique` and `not_null` tests pass for all primary keys in Silver/Gold layers.
+- [ ] **Size (Gate 1):** Bronze record count matches the source metadata (+/- 0.01%).
+- [ ] **Shape (Gate 2):** Categorical distributions must remain intact. `unique` and `not_null` tests pass for all primary keys in Silver/Gold layers.
+- [ ] **Sample (Gate 3 - Moral Certainty):** A 1% random audit must reveal zero identity drift between Source and Vault.
 - [ ] **Observability:** 100% of columns in the Gold layer have descriptions in `schema.yml`.
-- [ ] **Certification:** Every Dashboard includes a mandatory **"Proof Section"** at the bottom demonstrating data correctness.
+- [ ] **Visual Certification:** Every Dashboard includes a mandatory **"Proof Section"** demonstrating data correctness (Freshness, Integrity, Provenance).
 
-## 🤖 3. Agentic Autonomy (Kilo)
-- [ ] Self-healing logic is implemented and tested for the specific scraper.
-- [ ] The repair cycle (LLM Re-parse -> TDD -> Deploy) is verified.
+## 🤖 4. Agentic Autonomy
+- [ ] Self-healing logic is implemented and tested for the specific pipeline.
 - [ ] A **Slack Alert** to `stonezuppe.slack.com` is triggered for both success and healing events.
+- [ ] Continuous regression: every code change must not break previously functioning pipelines.
 
-## 📦 4. Deployment & Handover
+## 📦 5. Deployment & Handover
 - [ ] **Sentinel Audit:** `python3 bin/focus_sentinel.py` passes with zero Critical Pollution events.
 - [ ] **Architecture Check:** Any structural/tooling shift is recorded in an **ADR** with the rationale.
-- [ ] **Lineage Hub:** `bin/publish_docs.sh` has been executed; the updated lineage is verified at `civicpulse.thewongway.co`.
+- [ ] **Lineage Hub:** dbt docs are updated and published.
 - [ ] **Bead Close:** The tracking **Bead (bd)** is closed with a final summary of changes and the "Why."
-- [ ] **Lineage:** `dbt docs` are updated and reflect the latest assembly line state.
+- [ ] **Knowledge Distshake:** Non-obvious lessons are moved to `docs/KNOWLEDGE.md` and any new environment truths are hardened into `docs/SOP.md`.
 - [ ] `git push` succeeded and remote is in sync.
 
-## 🏛 5. The Topology Seal (ERD)
-- [ ] **Schema Mapping:** Every Silver and Gold model must be represented in the [Project ERD](file:///Users/gordonwong/WWWarehouse/docs/ERD.md).
-- [ ] **Relationship Integrity:** All foreign key relationships (joins) must be explicitly diagrammed using Mermaid.js syntax.
-
-## 🏛 6. The Lightdash Discovery Seal
-- [ ] **Semantic Discovery:** Every Gold model must be tagged with `tags: ["lightdash"]` in `schema.yml`.
-- [ ] **Queryability:** The model must be visible in the Lightdash Explorer and joinable without SQL errors.
-
-## 🌍 7. The Public Portal Handshake
-- [ ] **Knowledge Hub Update:** The [Project ERD](file:///Users/gordonwong/WWWarehouse/docs/ERD.md) and dbt docs must be published to [civicpulse.thewongway.co](http://civicpulse.thewongway.co) via `bin/publish_docs.sh`.
-- [ ] **Accessibility:** The latest model schema, descriptions, and lineage must be user-accessible on the public site.
-
-## 🧪 8. The Functional Proof Seal (TDD)
-- [ ] **Logic Verification:** Every significant functional change (Scrapers, Transformers) has a corresponding test case in `tests/functional/`.
-- [ ] **Mock Sovereignty:** Tests must demonstrate success using mock data to ensure laptop-independent verification.
-- [ ] **Pass Gate:** `pytest tests/functional/` must return 100% pass before the final "Bead" handshake.
+## 🏛 6. Topology & Schema
+- [ ] **ERD:** Every Silver and Gold model must be represented in the [Project ERD](file:///Users/gordonwong/WWWarehouse/docs/ERD.md).
+- [ ] **Relationship Integrity:** All foreign key relationships (joins) must be explicitly diagrammed.
+- [ ] **Semantic Discovery:** Every Gold model must be tagged with `tags: ["lightdash"]` in `schema.yml` and be joinable without SQL errors.
 
 ---
-*Created by the Wong Way Assistant | April 2026*
+*Created by the Wong Way Data Factory | April 2026*
