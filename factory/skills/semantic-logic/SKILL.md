@@ -181,3 +181,20 @@ When modifying existing semantic layer config:
 | Filtering on non-dimension columns | Filter expressions can only use declared dimensions/entities, not raw columns |
 | `mf validate-configs` shows stale results | Re-run `dbt parse` / `dbtf parse` first to regenerate the manifest |
 | MetricFlow install breaks `dbt-semantic-interfaces` | Install `dbt-metricflow` (not bare `metricflow`) to get compatible dependency versions |
+
+# Sovereign Extension: The Artisan's Semantic Ledger 🏮
+
+## 1. Cube.dev Integration
+For analytics requiring high-performance interactive exploration (Lightdash/Cube), use the Cube.js schema protocol.
+- **Measures**: Define aggregates (count, sum) in `.js` or `.yml` schemas.
+- **Dimensions**: Map to the Gold layer fields.
+- **Pre-Aggregations**: Mandatory for datasets >1M rows to ensure the "Wow" factor in latency.
+
+## 2. Visual Verification (Visual DQ)
+The Artisan does not trust the warehouse blindly. 
+- Use the **'Visual Cross-Check'**: For every metric defined in dbt or Cube, manually run a raw SQL query.
+- Log the variance. If variance > 0%, the Knowledge Product is **UNSAFE**.
+
+## 3. MetricFlow vs Cube
+- Use **MetricFlow** for upstream, standardized business logic (Profit, Revenue).
+- Use **Cube** for downstream, dashboard-optimized logic (interactive filters, pre-aggs).

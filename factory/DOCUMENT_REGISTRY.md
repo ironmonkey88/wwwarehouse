@@ -62,7 +62,7 @@ These documents define the "personhood" of agents. They are machine-readable YAM
 | **The Refiner** | `/factory/modes/refiner/MODE.yaml` | dbt & Transformation Specialist | TDD Gate, Medallion standards, Semantic Layer | Cloud AI (for refinery tasks) |
 | **The Witness** | `/factory/modes/witness/MODE.yaml` | Audit & verification persona | Triple-Seal Audit, DoD rules, audit groups | Cloud AI (for validation & releases) |
 | **The Debugger** | `/factory/modes/debugger/MODE.yaml` | Troubleshooting & healing persona | Log-parsing rules, root-cause methodology | Cloud AI (for bug fixing) |
-| **The Lookout** | `/factory/modes/lookout/MODE.yaml` | BI Analyst & Dashboard persona | Evidence.dev rules, Gold Layer focus, research groups | Cloud AI (for BI & dashboarding) |
+| **The Artisan** | `/factory/modes/artisan/MODE.yaml` | Product & Semantic Specialist | Evidence-plating, Cube logic, Visual DQ, Aesthetic Mastery | Cloud AI (for dashboarding/metrics) |
 | **The Refinery** | `/factory/modes/refinery/MODE.yaml` | Git & release hygiene persona | Checkpoint Protocol, atomic commit rules | Cloud AI (for source control sync) |
 | **The Sifu** | `/factory/modes/sifu/MODE.yaml` | Kaizen Teacher & Coaching persona | Retros, Learning Log (KNOWLEDGE.md), Upskilling | Cloud AI (for workforce growth) |
 
