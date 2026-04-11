@@ -56,6 +56,12 @@ These documents define the "personhood" of agents. They are machine-readable YAM
 | :--- | :--- | :--- | :--- | :--- |
 | **Agent Registry** | `/factory/modes/README.md` | Governance standards for personas | Kilo schema definition, activation protocol | Every agent at session start |
 | **Mode Template** | `/factory/modes/template.yaml` | The blueprint for new personas | Required YAML fields, roleDefinition | The Architect (when commissioning agents) |
+| **The Architect** | `/factory/modes/architect/MODE.yaml` | High-level system & design persona | ADR rules, Laptop Independence, design groups | Cloud AI (for architecture tasks) |
+| **The Mayor** | `/factory/modes/mayor/MODE.yaml` | Context & coordination persona | task.md rules, Bead tracking, telemetry | Cloud AI (for project management) |
+| **The Coder** | `/factory/modes/coder/MODE.yaml` | Implementation & engineering persona | TDD mandate, dbt/Python rules, engineering groups | Cloud AI (for feature development) |
+| **The Witness** | `/factory/modes/witness/MODE.yaml` | Audit & verification persona | Triple-Seal Audit, DoD rules, audit groups | Cloud AI (for validation & releases) |
+| **The Debugger** | `/factory/modes/debugger/MODE.yaml` | Troubleshooting & healing persona | Log-parsing rules, root-cause methodology | Cloud AI (for bug fixing) |
+| **The Refinery** | `/factory/modes/refinery/MODE.yaml` | Git & release hygiene persona | Checkpoint Protocol, atomic commit rules | Cloud AI (for source control sync) |
 
 ---
 

@@ -1,0 +1,21 @@
+version: 2
+models:
+  - name: profile_stg_311_requests
+    columns:
+      - name: column_name
+        tests:
+          - unique
+          - not_null
+
+# unit_tests:
+#   - name: test_dbt_profiler_logic
+#     model: profile_stg_311_requests
+#     given:
+#       - input: ref('stg_311_requests')
+#         rows:
+#           - {service_request_id: "1", request_type: "Pothole"}
+#           - {service_request_id: "2", request_type: null}
+#     expect:
+#       rows:
+#         - {column_name: "service_request_id", data_type: "VARCHAR", row_count: 2, not_null_proportion: 1.0, distinct_count: 2, is_unique: true}
+#         - {column_name: "request_type", data_type: "VARCHAR", row_count: 2, not_null_proportion: 0.5, distinct_count: 1, is_unique: false}

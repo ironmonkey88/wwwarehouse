@@ -1,25 +1,20 @@
-# Task: ERD Sovereignty & DoD Hardening 🛡️
+# Task: Sovereign Data Profiling 📊
 
-Implementing the "Topology Seal" to ensure all data models are mapped in the project ERD.
+Implementing automated data quality scanning for 1.16M records in the cloud lakehouse.
 
-## High-Level Tasks
-- [x] **CP-G01: Update DoD** ([definition_of_done.md](file:///Users/gordonwong/WWWarehouse/docs/definition_of_done.md))
-- [x] **CP-G02: Initialize Project ERD** ([docs/ERD.md](file:///Users/gordonwong/WWWarehouse/docs/ERD.md))
-- [/] **CP-G03: Link ERD to Master Plan** ([docs/master_plan.md](file:///Users/gordonwong/WWWarehouse/docs/master_plan.md))
-- [x] **CP-G04: Update DoD for Accessibility** ([docs/definition_of_done.md](file:///Users/gordonwong/WWWarehouse/docs/definition_of_done.md))
-- [/] **CP-G05: Enhance Documentation Hub** ([bin/publish_docs.sh](file:///Users/gordonwong/WWWarehouse/bin/publish_docs.sh))
-- [ ] **CP-G06: Lightdash Discovery Tags** ([transformation/dbt/models/schema.yml](file:///Users/gordonwong/WWWarehouse/transformation/dbt/models/schema.yml))
-
-## Sub-Tasks
-### 🏛 1. Governance Update
-- [x] Add Section 5 (Topology Seal) to DoD.
-- [x] Add Section 6 (Lightdash Discovery) and Section 7 (Public Portal) to DoD.
-
-### 🧭 2. Documentation Setup
-- [x] Create `docs/ERD.md`.
-- [x] Document `stg_councilors` entity.
-- [/] Update `bin/publish_docs.sh` to include ERD.md.
-
-### 🤖 3. Automation & Verification
-- [ ] Tag `stg_councilors` for Lightdash in `schema.yml`.
-- [ ] Run `focus_sentinel.py` to verify documentation integrity.
+## Progress
+- [x] **CP-P01: Configure Persistence**
+    - [x] Update `profile_stg_311_requests.sql` to `materialized='external'`.
+    - [x] Set GCS path: `s3://warehouse-011793-factory/gold/profiling/`.
+- [x] **CP-P02: Orchestrate CI/CD**
+    - [x] Update `cloudbuild.yaml` with `dbt run --select profiling`.
+    - [x] Remove exclusion from doc-gen step.
+- [x] **CP-P03: Build Visualization**
+    - [x] Create `analytics/evidence/sources/civic_pulse/profiling_stats.sql`.
+    - [x] Create `analytics/evidence/pages/profiling.md`.
+- [x] **CP-P04: Deploy & Verify**
+    - [x] Fix `INFORMATION_SCHEMA` catalog error for DuckDB profiling
+    - [x] Stabilize Docker base image (`slim-bookworm`)
+    - [x] Resolve "Bad file descriptor" error (Switched to file-based DuckDB)
+    - [x] Verify successful profiling in Build `2c7bf5c5-6cef-468d-8b1b-c09786b43c30`
+    - [ ] Resolve Evidence portal build error (Step #4)

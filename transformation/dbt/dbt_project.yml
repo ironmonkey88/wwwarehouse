@@ -21,3 +21,8 @@ models:
   refinery:
     staging:
       +materialized: view
+
+dispatch:
+  - macro_namespace: dbt_profiler
+    search_order: ['refinery', 'dbt_profiler']
+

@@ -3,4 +3,8 @@
 name: civic_pulse
 type: duckdb
 options:
-  filename: warehouse.duckdb
+  filename: ":memory:"
+  settings:
+    s3_endpoint: 'storage.googleapis.com'
+    s3_region: 'us-east1'
+    s3_url_style: 'path'

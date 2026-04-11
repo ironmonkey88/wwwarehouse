@@ -3,7 +3,7 @@
 ) }}
 
 WITH raw_data AS (
-    SELECT * FROM {{ source('bronze', 'service_requests') }}
+    SELECT * FROM {{ source('bronze_311', 'service_requests') }}
 )
 
 SELECT
@@ -12,10 +12,10 @@ SELECT
     CAST((CAST(date_created AS TIMESTAMPTZ) AT TIME ZONE 'US/Eastern') AS TIMESTAMP) AS created_at,
     CAST((CAST(most_recent_status_date AS TIMESTAMPTZ) AT TIME ZONE 'US/Eastern') AS TIMESTAMP) AS closed_at,
     type AS request_type,
-    issue_description,
+    classification,
+    category,
     most_recent_status AS request_status,
     ward AS request_ward,
-    street_address,
     -- Calculate duration between naive timestamps
     CASE 
         WHEN most_recent_status = 'Closed'

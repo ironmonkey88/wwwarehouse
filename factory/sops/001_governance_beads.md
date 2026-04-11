@@ -27,6 +27,7 @@ We use the **Beads (bd)** system for decentralized, version-controlled task mana
     bd comments add <id> "Switching to dlt for this scraper because SODA API supports it natively."
     ```
 3.  **The "Done" Summary**: When closing a Bead, you must summarize what was accomplished and "Why" it meets the DoD.
+4.  **The Knowledge Distshake**: For major milestones, you MUST perform a **Knowledge Distshake**—moving non-obvious lessons into `docs/KNOWLEDGE.md` and hardening any new environment truths into `docs/SOP.md`. 🧠🛡️
 
 ## 📜 3. Code-Level Traceability
 *   **dbt Descriptions**: Every model and critical column in `schema.yml` must have a description explaining its business logic.

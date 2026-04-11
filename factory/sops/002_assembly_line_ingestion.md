@@ -21,7 +21,8 @@ We use **dlt (data load tool)** for its serverless efficiency.
     - Add authentication (Secret Manager).
     - Configure incremental loading (Checkpoints).
     - Map fields according to the "Right Format."
-3.  **Local Verification**: Run the pipeline locally against a small sample.
+    - **Apply Binary Stamp**: Every ingestion script MUST include a Shebang Header and be followed by a `chmod +x` command to ensure execution sovereignty. 🛡️
+3.  **Local Verification**: Run the pipeline locally against a small sample using **Direct Binary Pathing** (absolute path to `.venv/bin/python3`).
     - **Check**: Verify data landed in a local DuckDB file on GCS.
 
 ## 🛡 3. Data Integrity & "The Odometer"

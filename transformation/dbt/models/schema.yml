@@ -5,6 +5,9 @@ sources:
     schema: bronze
     tables:
       - name: councilors
+  - name: bronze_311
+    tables:
+      - name: service_requests
 
 models:
   - name: stg_councilors
