@@ -58,7 +58,8 @@ These documents define the "personhood" of agents. They are machine-readable YAM
 | **Mode Template** | `/factory/modes/template.yaml` | The blueprint for new personas | Required YAML fields, roleDefinition | The Architect (when commissioning agents) |
 | **The Architect** | `/factory/modes/architect/MODE.yaml` | High-level system & design persona | ADR rules, Laptop Independence, design groups | Cloud AI (for architecture tasks) |
 | **The Mayor** | `/factory/modes/mayor/MODE.yaml` | Context & coordination persona | task.md rules, Bead tracking, telemetry | Cloud AI (for project management) |
-| **The Coder** | `/factory/modes/coder/MODE.yaml` | Implementation & engineering persona | TDD mandate, dbt/Python rules, engineering groups | Cloud AI (for feature development) |
+| **The Coder** | `/factory/modes/coder/MODE.yaml` | Implementation & engineering persona (Pending Refactor) | TDD mandate, dbt/Python rules, engineering groups | Cloud AI (for feature development) |
+| **The Refiner** | `/factory/modes/refiner/MODE.yaml` | dbt & Transformation Specialist | TDD Gate, Medallion standards, Semantic Layer | Cloud AI (for refinery tasks) |
 | **The Witness** | `/factory/modes/witness/MODE.yaml` | Audit & verification persona | Triple-Seal Audit, DoD rules, audit groups | Cloud AI (for validation & releases) |
 | **The Debugger** | `/factory/modes/debugger/MODE.yaml` | Troubleshooting & healing persona | Log-parsing rules, root-cause methodology | Cloud AI (for bug fixing) |
 | **The Lookout** | `/factory/modes/lookout/MODE.yaml` | BI Analyst & Dashboard persona | Evidence.dev rules, Gold Layer focus, research groups | Cloud AI (for BI & dashboarding) |
