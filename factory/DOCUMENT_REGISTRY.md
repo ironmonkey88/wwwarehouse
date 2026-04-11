@@ -125,3 +125,13 @@ These documents are outward-facing. They can be deleted without impacting intern
 
 ---
 *Maintained by the Wong Way Data Factory | April 2026*
+
+## 📁 Tier 4: Templates & Assets (Factory Blueprints)
+
+Reusable patterns and templates to accelerate workforce execution.
+
+| Document | Location | Purpose | Contains | Used By |
+| :--- | :--- | :--- | :--- | :--- |
+| **Requirement Template** | `factory/templates/requirement.md` | Pattern for AC harvesting | AC, Out-of-Scope, Questions | The Mayor (PM) |
+| **Task Bead Template** | `factory/templates/task_bead.md` | Standard Strike Team task list | Objectives, Strike Team, DoD | The Mayor (PM) |
+| **Lesson Template** | `factory/templates/lesson.md` | Standard for Kaizen harvesting | Gap, Insight, Fix | The Sifu |
