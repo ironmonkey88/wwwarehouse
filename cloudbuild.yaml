@@ -1,0 +1,77 @@
+steps:
+  # 1. Fetch Secrets into Workspace
+  - name: 'gcr.io/google.com/cloudsdktool/google-cloud-cli'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        mkdir -p .secrets
+        gcloud secrets versions access latest --secret="gcs-access-key-id" --project="444916529051" > .secrets/gcs_id
+        gcloud secrets versions access latest --secret="gcs-secret-access-key" --project="444916529051" > .secrets/gcs_key
+        gcloud secrets versions access latest --secret="firebase-token" --project="444916529051" > .secrets/firebase_token
+
+  # 2. Build the Sovereign Refinery image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/sovereign-refinery:latest', '.']
+
+  # 3. dbt Profiling Execution (New Step)
+  - name: 'gcr.io/$PROJECT_ID/sovereign-refinery:latest'
+    entrypoint: 'sh'
+    dir: 'transformation/dbt'
+    args: 
+      - '-c'
+      - |
+        export GCS_ACCESS_KEY_ID=$(cat ../../.secrets/gcs_id)
+        export GCS_SECRET_ACCESS_KEY=$(cat ../../.secrets/gcs_key)
+        export DBT_LOG_FORMAT=text
+        export DBT_USE_COLORS=false
+        dbt deps
+        dbt run --profiles-dir . --select +profiling --debug
+
+  # 4. dbt Documentation Generation
+  - name: 'gcr.io/$PROJECT_ID/sovereign-refinery:latest'
+    entrypoint: 'sh'
+    dir: 'transformation/dbt'
+    args: 
+      - '-c'
+      - |
+        export GCS_ACCESS_KEY_ID=$(cat ../../.secrets/gcs_id)
+        export GCS_SECRET_ACCESS_KEY=$(cat ../../.secrets/gcs_key)
+        # We no longer exclude profiling models as they are now materialized externally
+        dbt docs generate --profiles-dir .
+
+  # 5. Evidence.dev Build
+  - name: 'node:22'
+    entrypoint: 'sh'
+    dir: 'analytics/evidence'
+    args:
+      - '-c'
+      - |
+        export EVIDENCE_SOURCE__civic_pulse__s3_access_key_id=$(cat ../../.secrets/gcs_id)
+        export EVIDENCE_SOURCE__civic_pulse__s3_secret_access_key=$(cat ../../.secrets/gcs_key)
+        npm install
+        npm run build
+
+  # 6. Portal Fusion & Publishing
+  - name: 'node:22'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        # Ingest dbt docs into Evidence build folder
+        mkdir -p analytics/evidence/build/docs
+        cp transformation/dbt/target/index.html analytics/evidence/build/docs/
+        cp transformation/dbt/target/manifest.json analytics/evidence/build/docs/
+        cp transformation/dbt/target/catalog.json analytics/evidence/build/docs/
+        
+        # Deploy to Firebase
+        export FIREBASE_TOKEN=$(cat .secrets/firebase_token)
+        npm install -g firebase-tools
+        firebase deploy --only hosting --token "$$FIREBASE_TOKEN"
+
+images:
+  - 'gcr.io/$PROJECT_ID/sovereign-refinery:latest'
+
+timeout: '1800s'
+options:
+  logging: CLOUD_LOGGING_ONLY
