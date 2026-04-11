@@ -1,0 +1,20 @@
+# [SIMULATED] Refiner Drill: Geo-Demographic Join
+# Objective: Verify the join logic between 311 tickets and Ward demographics.
+
+unit_tests:
+  - name: test_int_refiner_drill_joined
+    model: int_refiner_drill_joined
+    description: "Ensure that 311 tickets are correctly enriched with ward-level census data."
+    given:
+      - input: ref('stg_311_requests')
+        rows:
+          - {service_request_id: 101, ward: 'Ward 1'}
+          - {service_request_id: 102, ward: 'Ward 2'}
+      - input: ref('dim_refiner_drill_wards')
+        rows:
+          - {ward_id: 'Ward 1', median_income: 75000}
+          - {ward_id: 'Ward 2', median_income: 62000}
+    expect:
+      rows:
+        - {service_request_id: 101, ward_median_income: 75000}
+        - {service_request_id: 102, ward_median_income: 62000}
