@@ -17,5 +17,12 @@ This document is the "Continuous Learning" repository for the project. It stores
 *   **Insight (Audit Jitter)**: High-velocity datasets (like live 311 tickets) drift during the ingestion window. Audits must use the **Locked Handshake** protocol—fetching the `MAX(id)` at the start of ingestion and auditing against that fixed point rather than the live source total.
 *   **Insight (Evidence Components)**: Always check `package.json` for the installed version of Evidence.dev before implementing UI components (e.g., `BarChart` vs `DonutChart`) to prevent build regressions.
 
+## 📅 [2026-04-11] The Agentic Foundry (Phase 3) 🧧
+
+*   **Insight (Sifu Handshake)**: Every worker must be "Qualified" per ADR-005. A mode without bound skills is merely an intention. [verify_worker.py]
+*   **Insight (Git Sovereignty)**: "Stage Everything, Filter the Bloat." Precise whitelisting in agentic Git automation is brittle; whitelist the whole repo and then blacklist binaries to ensure a clean sync. 🛰️
+*   **Insight (Research Sovereignty)**: "Clone First, Browse Second." Agents are 5x more efficient at IQ harvesting when analyzing local text vs DOM-based browser sessions.
+*   **Insight (Persona Stability)**: Explicit **Role Assertion** at the start of every session is the primary defense against Agentic Drift. [SOP-000]
+
 ---
-*Maintained by the Wong Way Assistant.*
+*Maintained by The Sifu | Wong Way Data Factory*

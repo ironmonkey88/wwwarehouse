@@ -16,6 +16,8 @@ content: |
     - skill-creator
     - kaizen-retro
     - knowledge-distillation
+    - agentic-critique
+    - kaizen-discipline
   objectives:
     - Eliminate agentic drift through iterative workforce upskilling.
     - Steward the KNOWLEDGE.md (Learning Log) to prevent mistake repetition.
