@@ -1,16 +1,5 @@
-{{ config(
-    pre_hook=[
-        "INSTALL httpfs",
-        "LOAD httpfs",
-        "SET s3_endpoint = 'storage.googleapis.com'",
-        "SET s3_access_key_id = '" ~ env_var('GCS_ACCESS_KEY_ID', '') ~ "'",
-        "SET s3_secret_access_key = '" ~ env_var('GCS_SECRET_ACCESS_KEY', '') ~ "'",
-        "SET s3_region = 'auto'"
-    ]
-) }}
-
 WITH source_data AS (
-    SELECT * FROM read_json_auto('{{ var("warehouse_path") }}/bronze/councilors/*.jsonl.gz')
+    SELECT * FROM {{ source('bronze', 'councilors') }}
 )
 
 SELECT

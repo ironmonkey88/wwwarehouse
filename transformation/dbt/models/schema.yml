@@ -12,10 +12,6 @@ sources:
 models:
   - name: stg_councilors
     description: "Staged Somerville Councilor data"
-    meta:
-      lightdash:
-        show_as_table: true
-    tags: ["lightdash"]
     columns:
       - name: councilor_id
         tests:
@@ -24,3 +20,26 @@ models:
       - name: councilor_ward
         tests:
           - not_null
+
+  - name: slv_councilors
+    description: "Standardized Councilor Registry with Ward IDs"
+
+  - name: fct_311_council_pulse
+    description: "Geographic 311 tickets joined to Ward Councilors for accountability."
+    columns:
+      - name: service_request_id
+        tests:
+          - unique
+          - not_null
+
+exposures:
+  - name: councilor_accountability_pulse
+    type: dashboard
+    maturity: high
+    url: "file:///Users/gordonwong/WWWarehouse/analytics/evidence/pages/council_report.md"
+    description: "Monitors response times and volume per Ward Councilor for 1.16M Somerville 311 tickets."
+    owner:
+      name: "Gordon Wong"
+      email: "gordon@example.com"
+    depends_on:
+      - ref('fct_311_council_pulse')

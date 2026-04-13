@@ -1,12 +1,12 @@
+-- [ARCHITECT] Evidence Source: Service Requests (Recent Feed)
+-- This source provides the atomic grain for the most recent tickets.
 SELECT
     id,
     type,
-    classification,
-    category,
     most_recent_status,
     date_created,
-    most_recent_status_date,
     ward,
     origin_of_request
-FROM read_parquet('s3://warehouse-011793-factory/bronze/service_requests.parquet')
+FROM warehouse.silver.stg_311_requests
 ORDER BY date_created DESC
+LIMIT 100

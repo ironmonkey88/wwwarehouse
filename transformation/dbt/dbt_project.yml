@@ -15,7 +15,7 @@ vars:
   warehouse_path: "gs://warehouse-011793-factory"
 
 on-run-start:
-  - "{{ setup_gcs() }}"
+  - "{% if var('use_gcs', false) %}{{ setup_gcs() }}{% else %}{{ setup_local() }}{% endif %}"
 
 models:
   refinery:

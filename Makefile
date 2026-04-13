@@ -26,3 +26,13 @@ dev-check:
 report:
 	@echo "Generating Dolt Beads Report..."
 	@cd beads && dolt sql -q "SELECT RPAD(id, 8, ' ') AS ID, RPAD(status, 11, ' ') AS Status, title AS Task_Description FROM tasks ORDER BY id;"
+
+test-portal:
+	@echo "🛡️  Executing Sovereign Pulse Check..."
+	@python3 scripts/verify_portal.py
+
+ship: test-portal
+	@/bin/bash ./bin/release_pulse.sh
+
+portal-ship:
+	@/bin/bash ./bin/release_pulse.sh

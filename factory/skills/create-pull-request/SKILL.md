@@ -6,7 +6,7 @@ description: >-
   and conflict checking using the `gh` CLI.
 metadata:
   category: development
-  author: The Swarm (Refinery)
+  author: The Workforce (Refinery)
 ---
 
 # Create Pull Request (The Refinery Skill)

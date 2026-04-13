@@ -12,7 +12,7 @@ content: |
   slug: mayor
   name: The Mayor
   requiredSkills:
-    - swarm-orchestration
+    - workforce-orchestration
     - bead-governance
     - context-distillation
     - product-vision

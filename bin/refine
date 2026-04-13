@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# [WITNESS] The Refinery Gate 🏮
+# Purpose: Absolute stability and location-invariance for dbt transformations.
+
+set -e
+
+# 1. Determine Project Root (Relative to script location)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+DBT_DIR="$PROJECT_ROOT/transformation/dbt"
+VENV_DIR="$PROJECT_ROOT/.venv"
+
+# 2. Activate Sovereign Environment
+if [ -d "$VENV_DIR" ]; then
+    source "$VENV_DIR/bin/activate"
+else
+    echo "🔴 ERROR: Refinery Environment (.venv) not found at $VENV_DIR"
+    exit 1
+fi
+
+# 3. Execute dbt with Standardized Profiles
+# We force the ABSOLUTE path to the venv binary to bypass system hijacking.
+DBT_BIN="$VENV_DIR/bin/dbt"
+
+if [ ! -f "$DBT_BIN" ]; then
+    echo "🔴 ERROR: dbt binary not found in venv at $DBT_BIN"
+    exit 1
+fi
+
+cd "$DBT_DIR"
+echo "🏮 Refinery: Processing Material from $DBT_DIR..."
+"$DBT_BIN" "$@" --profiles-dir .
+
+# 4. Certification Output
+EXIT_CODE=$?
+if [ $EXIT_CODE -eq 0 ]; then
+    echo "🟢 REFINERY: Success. Knowledge artifacts materialized."
+else
+    echo "🔴 REFINERY: Failure. Transformation gates locked."
+fi
+
+exit $EXIT_CODE

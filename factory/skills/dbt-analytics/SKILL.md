@@ -5,7 +5,7 @@ description: >-
   "The Coder" or "The Debugger" to model data, write TDD mocks, and troubleshoot runs.
 metadata:
   category: data-engineering
-  author: The Swarm (Coder/Debugger)
+  author: The Workforce (Coder/Debugger)
 ---
 
 # dbt Analytics Engineering 

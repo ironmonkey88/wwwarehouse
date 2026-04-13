@@ -37,7 +37,7 @@ cat << 'EOF' > factory/templates/task_bead.md
 ## 🎯 Objective
 [What is the goal of this strike?]
 
-## 🧬 Strike Team
+## 🧬 Build Team
 - **Assembler**: [Task]
 - **Refiner**: [Task]
 - **Artisan**: [Task]

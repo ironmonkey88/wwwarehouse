@@ -1,15 +1,27 @@
-# Data Quality & Profiling
+# Data Profiling
 Detailed profiling of the Somerville 311 Service Request dataset (1.16M records).
 
 <Alert status="info">
 Profiling metrics are automatically regenerated in the cloud on every deployment using <code>dbt-profiler</code>.
 </Alert>
 
-## Data Quality Summary
-
 ```sql column_stats
 select * from civic_pulse.profiling_stats
 ```
+
+```sql type_dist
+select column_name, top_val_1, top_val_count_1, top_val_proportion_1 
+from civic_pulse.profiling_stats 
+where column_name = 'classification'
+```
+
+```sql status_dist
+select column_name, top_val_1, top_val_count_1, top_val_proportion_1 
+from civic_pulse.profiling_stats 
+where column_name = 'most_recent_status'
+```
+
+## Data Quality Summary
 
 <DataTable data={column_stats}>
   <Column id="column_name" title="Field Name" />
@@ -24,25 +36,13 @@ select * from civic_pulse.profiling_stats
 ## Detailed Field Statistics
 
 <Grid cols={2}>
-    <Card title="Top Classification Types">
-        ```sql type_dist
-        select column_name, top_val_1, top_val_count_1, top_val_proportion_1 
-        from civic_pulse.profiling_stats 
-        where column_name = 'classification'
-        ```
-        <Value data={type_dist} column="top_val_1" label="Most Common"/>
-        <Value data={type_dist} column="top_val_proportion_1" fmt="0.0%" label="Dominance"/>
-    </Card>
+### Top Classification Types
+<Value data={type_dist} column="top_val_1" label="Most Common"/>
+<Value data={type_dist} column="top_val_proportion_1" fmt="0.0%" label="Dominance"/>
 
-    <Card title="Top Work Groups">
-        ```sql status_dist
-        select column_name, top_val_1, top_val_count_1, top_val_proportion_1 
-        from civic_pulse.profiling_stats 
-        where column_name = 'most_recent_status'
-        ```
-        <Value data={status_dist} column="top_val_1" label="Status"/>
-        <Value data={status_dist} column="top_val_proportion_1" fmt="0.0%" label="Percentage"/>
-    </Card>
+### Top Work Groups
+<Value data={status_dist} column="top_val_1" label="Status"/>
+<Value data={status_dist} column="top_val_proportion_1" fmt="0.0%" label="Percentage"/>
 </Grid>
 
 ---

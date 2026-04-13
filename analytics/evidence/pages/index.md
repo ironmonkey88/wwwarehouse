@@ -1,12 +1,32 @@
----
-title: Somerville 311 Service Requests
-description: Live dashboard powered by the Wong Way Triple-Seal verified data pipeline.
----
+# Somerville Civic Pulse 🏮
 
-# Somerville 311 Service Requests
+> **"Always do things the Wong Way."**
+
+The **Somerville Civic Pulse** is a high-fidelity, agentic data factory. Built on the **Wong Way Warehouse** architecture, this platform produces a "Gold Standard" view of municipal service requests through automated ingestion, refinery, and triple-seal audit protocols.
 
 <Alert status="info">
-This data has been verified via the <b>Wong Way Triple-Seal Audit</b> — Size, Shape, and Sample parity confirmed against the Socrata source. All timestamps are in Eastern Time.
+This project is an autonomous "Zero-Idle" factory. It exists to provide 100% transparent, verifiable insights into the civic health of Somerville.
+</Alert>
+
+---
+
+## 🏛️ The Sovereign Hub
+Explore the genetic layers of the Pulse:
+
+| 📊 **[Mission Status](status)** | 🏛️ **[Architecture](architecture)** | 🧬 **[Philosophy](philosophy)** | 🧪 **[Data Lineage](lineage)** |
+| :--- | :--- | :--- | :--- |
+| Curated progress and phase milestones. | ERD diagrams and infrastructure technical specs. | The genetic logic of the Sovereign engine. | Data dictionary and refinery logic audits. |
+
+| 👑 **[Councilor Performance](council_report)** | 🔬 **[Data Profiling](profiling)** |
+| :--- | :--- |
+| Ward-level accountability and ticket resolution. | Detailed statistical health of 1.16M records. |
+
+---
+
+## 📈 Executive Summary: 311 Service Requests
+
+<Alert status="success">
+This data has been verified via the <b>Wong Way Triple-Seal Audit</b> — Size, Shape, and Sample parity confirmed against the Socrata source.
 </Alert>
 
 ## Overview
@@ -14,11 +34,11 @@ This data has been verified via the <b>Wong Way Triple-Seal Audit</b> — Size, 
 <BigValue
     data={total_requests}
     value="total_requests"
-    title="Total Requests (30 Days)"
+    title="Total Requests (Historical)"
 />
 
 ```sql total_requests
-SELECT count(*) as total_requests FROM civic_pulse.service_requests
+SELECT sum(request_count) as total_requests FROM civic_pulse.type_distribution
 ```
 
 ## Requests by Type
@@ -32,30 +52,7 @@ SELECT count(*) as total_requests FROM civic_pulse.service_requests
 />
 
 ```sql requests_by_type
-SELECT
-    type,
-    count(*) as request_count
-FROM civic_pulse.service_requests
-GROUP BY type
-ORDER BY request_count DESC
-```
-
-## Request Status Breakdown
-
-<BarChart
-    data={status_breakdown}
-    x="most_recent_status"
-    y="status_count"
-    title="Current Status Distribution"
-/>
-
-```sql status_breakdown
-SELECT
-    most_recent_status,
-    count(*) as status_count
-FROM civic_pulse.service_requests
-GROUP BY most_recent_status
-ORDER BY status_count DESC
+SELECT type, request_count FROM civic_pulse.type_distribution
 ```
 
 ## Requests by Ward
@@ -68,13 +65,7 @@ ORDER BY status_count DESC
 />
 
 ```sql requests_by_ward
-SELECT
-    ward,
-    count(*) as ward_count
-FROM civic_pulse.service_requests
-WHERE ward IS NOT NULL
-GROUP BY ward
-ORDER BY ward
+SELECT ward, ward_count FROM civic_pulse.ward_distribution
 ```
 
 ## Daily Volume Trend
@@ -87,19 +78,16 @@ ORDER BY ward
 />
 
 ```sql daily_trend
-SELECT
-    CAST(date_created AS DATE) as request_date,
-    count(*) as daily_count
-FROM civic_pulse.service_requests
-GROUP BY request_date
-ORDER BY request_date
+SELECT request_date, daily_count FROM civic_pulse.daily_volume
 ```
 
 ## Recent Requests
+*Atomic grain limited to the last 100 entries for performance.*
 
 <DataTable
     data={recent_requests}
     rows=20
+    search=true
 />
 
 ```sql recent_requests
@@ -111,6 +99,8 @@ SELECT
     ward,
     origin_of_request
 FROM civic_pulse.service_requests
-ORDER BY date_created DESC
 LIMIT 100
 ```
+
+---
+*Powered by Wong Way Data Factory | REQ-004: Gold Standard Dashboard*

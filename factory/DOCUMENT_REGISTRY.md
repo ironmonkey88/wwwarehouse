@@ -33,7 +33,7 @@ These documents govern agent behavior and project identity.
 
 ---
 
-## 🎭 Tier 3: The Specialized Swarm (Identity & Capability)
+## 🎭 Tier 3: The Specialized Workforce (Identity & Capability)
 
 | Category | Location | Purpose | Contains | Used By |
 | :--- | :--- | :--- | :--- | :--- |

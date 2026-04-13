@@ -1,0 +1,204 @@
+/* [ARTISAN] The Sovereign Gateway - ELITE Portal Design System */
+:root {
+    --bg-dark: #020617; /* Deep Slate 950 */
+    --bg-card: rgba(15, 23, 42, 0.7); /* Slate 900 with transparency */
+    --accent-blue: #0ea5e9; /* Sky 500 */
+    --accent-green: #10b981; /* Emerald 500 */
+    --accent-purple: #8b5cf6; /* Violet 500 */
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-glass: rgba(255, 255, 255, 0.05);
+    --border-highlight: rgba(14, 165, 233, 0.2);
+    --transition-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Antigravity Glow Field */
+.bg-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.05), transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(16, 185, 129, 0.05), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.03), transparent 60%);
+    z-index: -1;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+header {
+    text-align: center;
+    padding: 8rem 0 4rem 0;
+    animation: fadeIn 1.2s var(--transition-smooth) forwards;
+}
+
+h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* Quadrant Navigation */
+.gateway-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.card {
+    background: var(--bg-card);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-glass);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    transition: all 0.4s var(--transition-smooth);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s var(--transition-smooth);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-highlight);
+    background: rgba(30, 41, 59, 0.8);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover::before {
+    transform: translateX(100%);
+}
+
+.category-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.tag-reports { color: var(--accent-blue); }
+.tag-labs { color: var(--accent-green); }
+.tag-docs { color: var(--accent-purple); }
+.tag-roadmap { color: var(--text-secondary); }
+
+.card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.card-link {
+    margin-top: auto;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-link::after {
+    content: '→';
+    transition: transform 0.3s var(--transition-smooth);
+}
+
+.card:hover .card-link::after {
+    transform: translateX(4px);
+}
+
+/* Footer Section */
+footer {
+    margin-top: 12rem;
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-glass);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.version-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-glass);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .gateway-grid { grid-template-columns: 1fr; }
+    .container { padding: 3rem 1.5rem; }
+}

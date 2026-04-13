@@ -2,6 +2,13 @@
 
 This is the **Supreme Directive** for all agentic workforce (Cloud & Local) at the Wong Way Warehouse. It synthesizes architectural laws, governance protocols, and operational workflows into a single binding framework.
 
+## 🏮 The Wong Way Philosophy: Guardrails & Guidelines
+At the Wong Way Warehouse, we distinguish between two layers of engineering governance:
+1.  **Guidelines**: These are behavioral best practices and cultural norms. They explain the "Wong Way" to build and collaborate.
+2.  **Guardrails**: These are hard technical constraints that assume things *will* go wrong. Guardrails protect the system by physically blocking any action that violates the Sovereignty.
+
+**WE DO NOT BELIEVE IN THEATER.** If a process is important, it must be enforced by a technical gate, not just a verbal agreement.
+
 ## Pillar 1: Identity & Roles
 *   **The Orchestration Model**: This project uses the **Frugal Agentic Stack (2026)** "Town" model to minimize context bloat and maximize quality.
 *   **The Mayor (Manager)**: Responsible for the high-level mission and Beads orchestration. I will act as the Mayor during planning.
@@ -12,6 +19,7 @@ This is the **Supreme Directive** for all agentic workforce (Cloud & Local) at t
 *   **Roadmap (The Ledger)**: The [**`task.md`**](task.md) at the root is the project-local mirror of the Beads ledger. Treat this as the primary, versioned task roadmap.
 *   **Knowledge & Memory**: Record tactical insights in [**`docs/KNOWLEDGE.md`**](docs/KNOWLEDGE.md) and structural changes in [**`docs/adr/`**](docs/adr/).
 *   **Conflict Resolution**: If a conflict occurs between a user request and the Blueprint/Constitution, flag it as a **"Conscientious Objector."**
+*   **Rule 1.6: The Qualified Worker Handshake (Hard Gate)**: Every agent mode adopted must be formally certified via **`bin/verify_worker.py`**. Proceeding with development while in an uncertified or mismatching mode is a violation of the Sovereignty.
 
 ## Pillar 2: Architectural Hard-Lines
 *   **The Hive Sovereignty (Zero-Idle)**: All ingestion (`dlt`) and refinery (`dbt`) must run as ephemeral containerized jobs (Cloud Run) or local CLI. No persistent databases (Postgres/Snowflake) in the core stack.
@@ -34,6 +42,8 @@ This is the **Supreme Directive** for all agentic workforce (Cloud & Local) at t
     *   **Logic (Local Agent)**: Use **Kilo/Qwen 2.5** for $0 reasoning and spec drafting.
     *   **Execution (Cloud Agent)**: Use **Gemini 1.5 Flash** for high-volume file writes and terminal commands.
     *   **Governance (Official CLI)**: Use the `bd` Go binary for all task lifecycle management (`bd ready`, `bd claim`, `bd close`).
+*   **Verification Gate**: No bead may be claimed (`bd claim`) without first passing the **Qualified Worker Handshake** (`bin/verify_worker.py`).
+*   **Architecture (Architect Mode)**: Use **Gemini Pro** for Phase Gates and 10x Dry Runs.
     *   **Architecture (Architect Mode)**: Use **Gemini Pro** for Phase Gates and 10x Dry Runs.
 
 ## Pillar 4: Code Quality & Style

@@ -2,13 +2,14 @@ refinery:
   outputs:
     dev:
       type: duckdb
-      path: /workspace/refinery.duckdb
+      path: "../../.ignored/warehouse.duckdb"
+      database: warehouse
       schema: silver
-      threads: 1
+      threads: 4
       config_options:
         s3_endpoint: 'storage.googleapis.com'
-        s3_access_key_id: "{{ env_var('GCS_ACCESS_KEY_ID') }}"
-        s3_secret_access_key: "{{ env_var('GCS_SECRET_ACCESS_KEY') }}"
+        s3_access_key_id: "{{ env_var('GCS_ACCESS_KEY_ID', '') }}"
+        s3_secret_access_key: "{{ env_var('GCS_SECRET_ACCESS_KEY', '') }}"
         s3_region: 'us-east1'
         s3_url_style: 'path'
   target: dev

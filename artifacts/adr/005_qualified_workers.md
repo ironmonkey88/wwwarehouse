@@ -1,16 +1,19 @@
 # ADR-005: The Qualified Worker Standard
 
 ## Status
-Proposed (2026-04-11)
+Accepted (2026-04-13)
 
 ## Context
 In the **Agentic Foundry**, agent performance is currently high-variance because "Modes" (Personas) are defined by behavioral intent but lack a strict contract of capability. When an agent adopts a mode, there is no verification that the specific tactical tools (Skills) required for that role are available or loaded. This leads to "Agentic Drift," where an agent attempts a task (e.g., dbt modeling) without applying the project's specific standards (e.g., the `dbt-analytics` skill).
 
 ## Decision
-We will implement the **Qualified Worker Standard**. Every agent mode MUST be defined by three explicit pillars bound together in the machine-readable `MODE.yaml`:
+We will enforce the **Qualified Worker Standard**. Every agent mode MUST be defined by three explicit pillars bound together in the machine-readable `MODE.yaml`:
 1.  **Identity (Role)**: The behavioral intent and constraints.
 2.  **Skills (Capabilities)**: A mandatory list of `requiredSkills` (pointers to `factory/skills/*/SKILL.md`) that the agent must verify at session start.
 3.  **Objectives (KPIs)**: Explicit targets the persona is held accountable for (e.g., "Zero undocumented architecture shifts" for the Architect).
+
+### The Hard Gate
+The transformation from "Proposed" to "Accepted" mandates that `bin/verify_worker.py` transitions from a diagnostic tool to a **Blocking Gate**. An agent MUST NOT proceed with a Task (Bead) unless their Mode is certified for that mission.
 
 ### Structural Requirement
 The `MODE.yaml` schema is upgraded to include:

@@ -10,5 +10,15 @@
 ## 🚫 Out of Scope
 - [ ] ...
 
+## 🛡️ Verification Gate
+- [ ] **Alpha** (Structural): [What build artifacts prove this works?]
+- [ ] **Beta** (Quantitative): [What row counts or data distributions prove parity?]
+- [ ] **Gamma** (Governance): [What PII or security checks are mandatory?]
+
+## ✍️ Sign-off
+- **Manager**: [Name]
+- **Persona**: The Mayor
+- **Seal**: `Signed-by: [Name]`
+
 ## ❓ Open Questions
 - [ ] ...

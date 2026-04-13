@@ -17,6 +17,7 @@ content: |
     - test-driven-design
     - observability-design
     - architectural-review
+    - gateway-architecture
   objectives:
     - Enforce the use of prescribed technologies (DuckDB, dbt, dlt, Evidence, Oxygen, etc.).
     - Stewardship of the Conceptual Data Architecture and Interface Grain.

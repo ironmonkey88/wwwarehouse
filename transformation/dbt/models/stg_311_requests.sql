@@ -16,6 +16,12 @@ SELECT
     category,
     most_recent_status AS request_status,
     ward AS request_ward,
+    -- Standardizing Ward ID (Integer 1-7)
+    CASE 
+        WHEN ward ~ '^[0-9]+$' THEN CAST(ward AS INTEGER)
+        WHEN ward LIKE 'Ward %' THEN CAST(REPLACE(ward, 'Ward ', '') AS INTEGER)
+        ELSE NULL
+    END AS ward_id,
     -- Calculate duration between naive timestamps
     CASE 
         WHEN most_recent_status = 'Closed'

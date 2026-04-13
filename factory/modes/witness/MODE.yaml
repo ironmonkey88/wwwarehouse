@@ -15,6 +15,7 @@ content: |
     - pii-leak-detector
     - triple-seal-audit
     - release-hygiene
+    - public-ethics
   objectives:
     - Perform Triple-Seal Audits on every Knowledge Product.
     - Physically scan all warehouse assets for PII leaks.

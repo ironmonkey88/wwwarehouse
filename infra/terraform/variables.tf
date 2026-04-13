@@ -33,3 +33,9 @@ variable "firebase_token" {
   type        = string
   sensitive   = true
 }
+
+variable "portal_domain" {
+  description = "The custom domain for the public portal"
+  type        = string
+  default     = "civicpulse.thewongway.co"
+}

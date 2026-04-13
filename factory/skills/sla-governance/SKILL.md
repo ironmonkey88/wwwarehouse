@@ -10,7 +10,7 @@ Monitor the 'Factory Pulse', ensuring every practitioner meets the Gordon Standa
 - Flags any pipeline that stalls or exceeds the Architect's latency thresholds.
 
 ### 2. Stakeholder Alerting
-- Proactively alert Gordon if a 'Strike Team' mission is at risk of missing its delivery bead.
+- Proactively alert Gordon if a 'Build Team' mission is at risk of missing its delivery bead.
 - Manage the "DataOps Dashboard" view for the Artisan.
 
 ### 3. Frugality Governance

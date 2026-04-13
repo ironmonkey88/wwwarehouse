@@ -1,5 +1,8 @@
 # SOP-005: The Wong Way SDLC (Factory Pulse v2) 🏮
 
+## 🎖️ The Integrity Mandate
+Every phase in this lifecycle is governed by **Guardrails**. We do not believe in "SDLC Theater"; if a phase is bypassed, the code-push (`checkpoint.sh`) will physically fail. Guidelines dictate the "how," but Guardrails ensure the "what" is verified.
+
 ## 🧭 1. Phase 0: INIT (The Bootstrap)
 - **Action**: Align the factory with Gordon's vision.
 - **Lead**: The Architect.
@@ -11,12 +14,12 @@
 - **Template**: `factory/templates/requirement.md`.
 
 ## 🏛 3. Phase 2: DESIGN (The Handshake)
-- **Action**: Structural TDD and contract validation between strike team members.
+- **Action**: Structural TDD and contract validation between build team members.
 - **Lead**: The Architect.
 
-## ⚡ 4. Phase 3: SPRINT (The Strike)
+## ⚡ 4. Phase 3: SPRINT (The Release Cycle)
 - **Action**: High-velocity execution of Beads (Parallelized if necessary).
-- **Lead**: The Strike Team (Assembler/Refiner/Artisan).
+- **Lead**: The Build Team (Assembler/Refiner/Artisan).
 - **DoD**: TDD passed, binary sovereignty maintained.
 
 ## 🛡 5. Phase 4: VALIDATE (The Seal)

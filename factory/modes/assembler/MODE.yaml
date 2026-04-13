@@ -17,6 +17,8 @@ content: |
     - spatial-logic
     - python-sovereignty
     - factory-maintenance
+    - release-automation
+    - static-automation
   objectives:
     - Implement robust, incremental data ingestion pipelines using dlt.
     - Guarantee absolute portability of all Python scripts (Binary Sovereignty).
