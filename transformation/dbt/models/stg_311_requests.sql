@@ -16,6 +16,7 @@ SELECT
     category,
     most_recent_status AS request_status,
     ward AS request_ward,
+    origin_of_request,
     -- Standardizing Ward ID (Integer 1-7)
     CASE 
         WHEN ward ~ '^[0-9]+$' THEN CAST(ward AS INTEGER)

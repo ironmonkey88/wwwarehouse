@@ -7,10 +7,10 @@
         -- Register local files as views
         -- This bypasses the need for GCS HMAC credentials
         CREATE OR REPLACE VIEW bronze_311.service_requests AS 
-        SELECT * FROM read_parquet('data/service_requests.parquet');
+        SELECT * FROM read_parquet('/Users/gordonwong/WWWarehouse/data/service_requests.parquet');
 
         CREATE OR REPLACE VIEW bronze.councilors AS
-        SELECT * FROM read_json_auto('data/councilors.jsonl.gz');
+        SELECT * FROM read_json_auto('/Users/gordonwong/WWWarehouse/data/councilors.jsonl.gz');
     {% endset %}
 
     {% do run_query(setup_query) %}

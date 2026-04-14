@@ -1,0 +1,24 @@
+
+> my-evidence-project@0.0.1 build
+> evidence build project session with the user leadership personas session phase retrospective project session with the user leadership personas session project session with the user leadership main of the subagent requested by the user.
+
+[ERROR]:  x Build failed in 8.25s
+error during build:
+[vite-plugin-svelte] 'ButtonItem' is not defined
+file: /Users/gordonwong/WWWarehouse/analytics/evidence/.evidence/template/src/pages/311_performance/+page.md
+    at errorHandler (file:///Users/gordonwong/WWWarehouse/analytics/evidence/.evidence/template/svelte.config.js?ts=1776135623700:33:9)
+    at file:///Users/gordonwong/WWWarehouse/analytics/evidence/node_modules/@sveltejs/vite-plugin-svelte/src/utils/log.js:153:4
+    at Array.forEach (<anonymous>)
+    at logCompilerWarnings (file:///Users/gordonwong/WWWarehouse/analytics/evidence/node_modules/@sveltejs/vite-plugin-svelte/src/utils/log.js:151:14)
+    at Object.transform (file:///Users/gordonwong/WWWarehouse/analytics/evidence/node_modules/@sveltejs/vite-plugin-svelte/src/index.js:157:5)
+    at async transform (file:///Users/gordonwong/WWWarehouse/analytics/evidence/node_modules/rollup/dist/es/shared/node-entry.js:21246:16)
+    at async ModuleLoader.addModuleSource (file:///Users/gordonwong/WWWarehouse/analytics/evidence/node_modules/rollup/dist/es/shared/node-entry.js:21474:36)
+Build failed
+
+file:///Users/gordonwong/WWWarehouse/analytics/evidence/node_modules/@evidence-dev/evidence/cli.js:228
+			throw `Build process exited with code ${code}`;
+			^
+Build process exited with code 1
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.22.0

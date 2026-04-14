@@ -32,6 +32,32 @@ models:
           - unique
           - not_null
 
+  - name: fct_type_distribution
+    description: "Categorical breakdown of 311 volume for dashboard rendering."
+    columns:
+      - name: type
+        tests: [not_null]
+
+  - name: fct_ward_distribution
+    description: "Geographic breakdown of 311 volume for dashboard rendering."
+    columns:
+      - name: ward
+        tests: [not_null]
+
+  - name: fct_daily_volume
+    description: "Temporal trend of 311 volume by date_created."
+    columns:
+      - name: request_date
+        tests: [not_null, unique]
+
+  - name: fct_311_monthly_performance
+    description: "Tactical monthly aggregations for demand and backlog tracking."
+    columns:
+      - name: month_start
+        tests: [not_null]
+      - name: ward_id
+        tests: [not_null]
+
 exposures:
   - name: councilor_accountability_pulse
     type: dashboard

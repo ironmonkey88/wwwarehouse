@@ -2,7 +2,7 @@
 name: civic_pulse
 type: duckdb
 options:
-  filename: "/Users/gordonwong/WWWarehouse/.ignored/warehouse.duckdb"
+  filename: "../../../../.ignored/warehouse.duckdb"
   settings:
     s3_endpoint: 'storage.googleapis.com'
     s3_region: 'us-east1'

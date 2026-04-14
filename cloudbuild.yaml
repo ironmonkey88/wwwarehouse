@@ -1,4 +1,17 @@
 steps:
+  # 0. Infrastructure Audit (Sovereign Shield)
+  - name: 'gcr.io/google.com/cloudsdktool/google-cloud-cli'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        echo "🏮 Initiating Infrastructure Audit..."
+        [ -d transformation ] || { echo "❌ ERROR: transformation refinery missing"; exit 1; }
+        [ -d analytics ] || { echo "❌ ERROR: analytics refinery missing"; exit 1; }
+        [ -d bin ] || { echo "❌ ERROR: bin toolchain missing"; exit 1; }
+        [ -f Makefile ] || { echo "❌ ERROR: Makefile missing"; exit 1; }
+        echo "✅ Infrastructure Integrity Certified."
+
   # 1. Fetch Secrets into Workspace
   - name: 'gcr.io/google.com/cloudsdktool/google-cloud-cli'
     entrypoint: 'sh'
@@ -14,7 +27,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/sovereign-refinery:latest', '.']
 
-  # 3. dbt Profiling Execution (New Step)
+  # 3. dbt Profiling Execution (Refined with Hygiene Guards)
   - name: 'gcr.io/$PROJECT_ID/sovereign-refinery:latest'
     entrypoint: 'sh'
     dir: 'transformation/dbt'
@@ -25,8 +38,10 @@ steps:
         export GCS_SECRET_ACCESS_KEY=$(cat ../../.secrets/gcs_key)
         export DBT_LOG_FORMAT=text
         export DBT_USE_COLORS=false
+        # Certification Gate: Use --threads 1 for profiling to avoid multiprocessing Bad File Descriptor errors in GCP
         dbt deps
-        dbt run --profiles-dir . --select +profiling
+        dbt run --profiles-dir . --select tag:accountability tag:dashboard --threads 1
+        dbt test --profiles-dir . --select tag:accountability tag:dashboard --threads 1
 
   # 4. dbt Documentation Generation
   - name: 'gcr.io/$PROJECT_ID/sovereign-refinery:latest'
