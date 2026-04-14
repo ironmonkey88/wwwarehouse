@@ -59,5 +59,11 @@ At the Wong Way Warehouse, we distinguish between two layers of engineering gove
     2. The **Testing Trinity** (Unit, Functional, Regression) has passed.
     3. Results are logged in the official `beads` ledger via `bd close`.
 
+## Pillar 5: Sovereign Intelligence & Reporting
+*   **Rule 5.1: The Visual Proof of Life (Hard Gate)**: Every dashboard-related task must be verified via a browser-based visual check. Declaring success based solely on a "Green Build" is a violation of the Sovereignty. You must capture and provide a screenshot showing real numbers rendered on the screen.
+*   **Rule 5.2: The Minimalist Mandate**: When developing a new report or fixing a broken one, begin with a single KPI or table to prove the data-to-UI binding. Added complexity (charts, filters, interactivity) is only allowed once the "Micro-Report" is visually certified.
+*   **Rule 5.3: Certified Component Standard**: Only use standard, tested library components. The use of custom, experimental, or non-standard components requires a separate "Component Certification" bead before they can be integrated into production reports.
+*   **Rule 5.4: Binder-Aware Development**: Always cross-reference the Evidence Source name with the dbt model name. Any mismatch between "Sources" and "Models" must be resolved before triggering a production build.
+
 ---
 *Created by the Wong Way Assistant | April 2026*
