@@ -13,6 +13,7 @@ SELECT DISTINCT ward_id FROM civic_pulse.monthly_performance ORDER BY 1
         value=ward_id 
         label=ward_id
         title="Ward Select"
+        defaultValue=1
     />
 
     <Dropdown name=metric_picker defaultValue="incoming_count" title="Metric">
@@ -30,11 +31,16 @@ SELECT
     incoming_count,
     carryover_count,
     mom_demand_change,
-    -- Reactive column based on picker
-    ${inputs.metric_picker} as primary_value
+    -- Safer input handling via CASE statement
+    CASE 
+        WHEN '${inputs.metric_picker.value}' = 'incoming_count' THEN incoming_count
+        WHEN '${inputs.metric_picker.value}' = 'carryover_count' THEN carryover_count
+        WHEN '${inputs.metric_picker.value}' = 'mom_demand_change' THEN mom_demand_change
+        ELSE incoming_count 
+    END as primary_value
 FROM civic_pulse.monthly_performance
 WHERE month_start >= date_trunc('month', CURRENT_DATE) - interval 24 month
-AND ward_id = '${inputs.ward_filter}'
+AND ward_id = ${inputs.ward_filter.value ?? 1}
 ORDER BY month_start ASC
 ```
 
@@ -58,7 +64,7 @@ Primary metric (Volume) on the left axis; MoM Growth Rate (%) on the right axis.
 ## 📋 Data Grid
 Detailed monthly breakdown for the selected wards and metrics.
 
-<DataTable data={performance_data} search=true sort=true>
+<DataTable data={performance_data} search sort="month_start">
     <Column id=month_start label="Month" fmt="yyyy-MM" />
     <Column id=ward_id label="Ward" />
     <Column id=request_type label="Type" />
