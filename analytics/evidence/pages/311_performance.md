@@ -11,13 +11,14 @@ SELECT DISTINCT ward_id FROM civic_pulse.monthly_performance ORDER BY 1
         name=ward_filter 
         data={wards_list} 
         value=ward_id 
-        label="Select Ward"
+        label=ward_id
+        title="Ward Select"
     />
 
-    <Dropdown name=metric_picker defaultValue="incoming_count" label="Metric">
-        <DropdownOption value="incoming_count" valueLabel="Demand" />
-        <DropdownOption value="carryover_count" valueLabel="Backlog" />
-        <DropdownOption value="mom_demand_change" valueLabel="Growth Rate" />
+    <Dropdown name=metric_picker defaultValue="incoming_count" title="Metric">
+        <DropdownOption value="incoming_count" label="Demand" />
+        <DropdownOption value="carryover_count" label="Backlog" />
+        <DropdownOption value="mom_demand_change" label="Growth Rate" />
     </Dropdown>
 </div>
 
